@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>React 组件 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="React 组件" />
+<meta property="og:description" content="组件（推荐函数组件） React 元素就是由React.createElement()API 创建的一个虚拟DOM对象 在 React 中，一个返回 React 元素的函数可以当作" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T15:31:25+08:00" />
+<meta property="article:modified_time" content="2022-02-14T15:31:25+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="React 组件"/>
+<meta name="twitter:description" content="组件（推荐函数组件） React 元素就是由React.createElement()API 创建的一个虚拟DOM对象 在 React 中，一个返回 React 元素的函数可以当作"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/" /><link rel="prev" href="https://luuu4129955.github.io/posts/vue3%E9%80%A0%E8%BD%AE%E5%AD%90/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "React 组件",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/react%E7%BB%84%E4%BB%B6\/"
+        },"genre": "posts","wordcount":  1397 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/react%E7%BB%84%E4%BB%B6\/","datePublished": "2022-02-14T15:31:25+08:00","dateModified": "2022-02-14T15:31:25+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">React 组件</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1397 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#类组件">类组件</a></li>
+    <li><a href="#函数组件">函数组件</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#类组件-1">类组件</a>
+      <ul>
+        <li><a href="#初始化-state">初始化 state</a></li>
+        <li><a href="#读-state">读 state</a></li>
+        <li><a href="#写-state">写 state</a></li>
+      </ul>
+    </li>
+    <li><a href="#函数组件-1">函数组件</a>
+      <ul>
+        <li><a href="#初始化-state-1">初始化 state</a></li>
+        <li><a href="#读-state-1">读 state</a></li>
+        <li><a href="#写-state-1">写 state</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#类组件-2">类组件</a></li>
+    <li><a href="#函数组件-2">函数组件</a></li>
+    <li><a href="#结论">结论：</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#类组件-3">类组件</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="组件推荐函数组件">组件（推荐函数组件）</h1>
+<ul>
+<li>React 元素就是由<code>React.createElement()</code>API 创建的一个<code>虚拟DOM对象</code></li>
+<li>在 React 中，一个返回 React 元素的函数可以当作一个组件
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h1 id="reactcreateelement-逻辑">React.createElement 逻辑</h1>
+<ol>
+<li>传的字符串&rsquo;div'：就新建一个 div 标签</li>
+<li>传的函数：就调用函数，并获取其返回值</li>
+<li>传的类：就在类的前面加 <code>new</code>关键字（会执行<code>constructor</code>）。获取一个组件对象，然后调用对象的<code>render</code>方法，获取其返回值。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ol>
+<h1 id="1函数组件">1.函数组件</h1>
+<p>怎么写一个函数组件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">Welcome</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Hello</span><span class="p">,{</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+<span class="p">}</span>
+</code></pre></div><p>使用这个组件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">Welcome</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;crystal&#34;</span> <span class="p">/&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="2类组件">2.类组件</h1>
+<p>怎么写一个类组件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">class</span> <span class="nx">Welcome</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Hello</span><span class="p">,{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">h1</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>使用这个组件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">Welcome</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;crystal&#34;</span> <span class="p">/&gt;</span>
+</code></pre></div><p>总结：<!-- raw HTML omitted -->会被<code>babel</code>翻译为<code>React.createElement(Welcome)</code><!-- raw HTML omitted -->​</p>
+<p>代码示例：<a href="https://codesandbox.io/s/strange-shape-nh3kr?file=/src/index.js" target="_blank" rel="noopener noreffer">类组件（Son）和 函数组件（Grandson）</a><!-- raw HTML omitted -->​<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="添加-props外部数据">添加 props（外部数据）</h1>
+<p>关注如何读取这个 props，props 不能写
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="类组件">类组件</h2>
+<p>爸爸给儿子传值=儿子读爸爸的值<!-- raw HTML omitted -->直接读取属性：<code>this.props.xxx</code>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="函数组件">函数组件</h2>
+<p>儿子给孙子传值=孙子读儿子的值<!-- raw HTML omitted -->直接读取参数：<code>props.xxx</code><!-- raw HTML omitted -->​<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="添加-state内部数据">添加 state（内部数据）</h1>
+<p>关注<code>state</code>的初始化，读，写
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="类组件-1">类组件</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="初始化-state">初始化 state</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="读-state">读 state</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">n</span><span class="p">;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="写-state">写 state</h3>
+<p><code>this.state</code>是异步执行的，不会立即改变<code>n</code>的值</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//this.state
+</span><span class="c1"></span>
+<span class="c1">//1.内部直接返回一个新对象
+</span><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">({</span> <span class="nx">n</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">});</span>
+
+<span class="c1">//推荐写法2.内部写一个函数，接受一个旧的state参数
+</span><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">n</span> <span class="p">};</span>
+<span class="p">});</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="函数组件-1">函数组件</h2>
+<p><code>useState</code>返回数组，第一项读，第二项写
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="初始化-state-1">初始化 state</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="p">[</span><span class="nx">n</span><span class="p">,</span> <span class="nx">setN</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">//0就是初始化的值
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="读-state-1">读 state</h3>
+<p><code>n</code>就是读到的值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">{</span>
+  <span class="nx">n</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="写-state-1">写 state</h3>
+<p><code>setN(n+1)</code>永远不会改变<code>n</code>的值，它会产生新的<code>n</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="nx">setN</span><span class="p">(</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}&gt;</span><span class="o">+</span><span class="mi">1</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="复杂-state">复杂 state</h1>
+<p>如果 state 里面有 n,m2 个属性
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="类组件-2">类组件</h2>
+<p>会自动合并第一层的 2 个属性，<!-- raw HTML omitted --><code>this.setState</code>改变 n 的值，m 还是会沿用初始值，并不会被覆盖为<code>undefined</code><!-- raw HTML omitted -->​</p>
+<p>但是不会合并第二层属性<!-- raw HTML omitted -->自己使用<code>Object.assign</code>或者<code>...</code>操作符把不变属性拷过来
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="函数组件-2">函数组件</h2>
+<p>不会自动合并<!-- raw HTML omitted -->如果 state 里面有多个属性，并且使用下面这种写法</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="p">[</span><span class="nx">state</span><span class="p">,</span> <span class="nx">setState</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="p">({</span> <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">m</span><span class="o">:</span> <span class="mi">0</span> <span class="p">});</span>
+</code></pre></div><p>这种写法 ，</p>
+<ul>
+<li>由于只改变一个值时，另一个值会被覆盖为<code>undefined</code></li>
+<li>所以每次<code>setState</code>写值时，需要将其余不变属性拷贝一份</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="nx">setState</span><span class="p">({</span> <span class="p">...</span><span class="nx">state</span><span class="p">,</span> <span class="nx">n</span><span class="o">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">})}&gt;</span><span class="o">+</span><span class="mi">1</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="结论">结论：</h2>
+<p>永远不要依赖自动合并，学会使用<code>...</code>或者<code>Object.assign()</code>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="事件绑定">事件绑定</h1>
+<p><code>onClick</code>、<code>onKeyPress</code>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="类组件-3">类组件</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//addN() 写在组件里，是一个普通函数
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Son</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nx">addN</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="nx">n</span> <span class="p">};</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+
+  <span class="c1">//render里的事件绑定这么写
+</span><span class="c1"></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">addN</span><span class="p">()}&gt;</span><span class="o">+</span><span class="mi">1</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//1.传一个函数给onClick即可。注意C大写
+</span><span class="c1"></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">addN</span><span class="p">()}&gt;</span><span class="nx">n</span><span class="o">+</span><span class="mi">1</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+<span class="c1">//2.错误写法
+</span><span class="c1"></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">addN</span><span class="p">}&gt;</span><span class="nx">n</span><span class="o">+</span><span class="mi">1</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="c1">//这样写，会让this.addN里的this指向window
+</span><span class="c1">//React 是这么调用的：button.onClick.call(null,event)。这里的null就是this。this为空则指向window
+</span><span class="c1"></span>
+<span class="c1">//3.可行写法，但太长
+</span><span class="c1">//返回了一个绑定了当前this的新函数
+</span><span class="c1"></span><span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">addN</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">)}&gt;</span><span class="nx">n</span><span class="o">+</span><span class="mi">1</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div><p>改良版：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//addN 写在constructor里,是一个箭头函数
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Son</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">uper</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">addN</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="nx">n</span> <span class="p">};</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="c1">//render里的事件绑定这么写
+</span><span class="c1"></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">addN</span><span class="p">}&gt;</span><span class="o">+</span><span class="mi">1</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>​</p>
+<p>最终最优雅写法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">//addN 写在组件里，是一个箭头函数
+</span><span class="c1">//直接写在组件里，比改良版少写了一个this
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Son</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nx">addN</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">state</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">return</span> <span class="p">{</span> <span class="nx">n</span> <span class="p">};</span>
+    <span class="p">});</span>
+
+  <span class="c1">//render里的事件绑定这么写
+</span><span class="c1"></span>  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">addN</span><span class="p">}&gt;</span><span class="o">+</span><span class="mi">1</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/vue3%E9%80%A0%E8%BD%AE%E5%AD%90/" class="prev" rel="prev" title="Vue3造轮子项目记录"><i class="fas fa-angle-left fa-fw"></i>Vue3造轮子项目记录</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

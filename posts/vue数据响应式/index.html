@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Vue数据响应式 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="Vue数据响应式" />
+<meta property="og:description" content="1.回顾 getter&amp;setter 作用：在定义对象的时候就在对象上设置getter，setter来对一个虚拟属性进行读写用法：get，set关键字getter：不用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T15:31:25+08:00" />
+<meta property="article:modified_time" content="2022-02-14T15:31:25+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vue数据响应式"/>
+<meta name="twitter:description" content="1.回顾 getter&amp;setter 作用：在定义对象的时候就在对象上设置getter，setter来对一个虚拟属性进行读写用法：get，set关键字getter：不用"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" /><link rel="prev" href="https://luuu4129955.github.io/posts/webpack%E4%BD%BF%E7%94%A8/" /><link rel="next" href="https://luuu4129955.github.io/posts/vue%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%8C%87%E4%BB%A4%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Vue数据响应式",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F\/"
+        },"genre": "posts","wordcount":  2087 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F\/","datePublished": "2022-02-14T15:31:25+08:00","dateModified": "2022-02-14T15:31:25+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Vue数据响应式</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2087 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="1回顾-gettersetter">1.回顾 getter&amp;setter</h1>
+<p>作用：在定义对象的时候就在对象上设置<code>getter</code>，<code>setter</code>来对一个虚拟属性进行读写<!-- raw HTML omitted -->用法：<code>get</code>，<code>set</code>关键字<!-- raw HTML omitted -->getter：不用在函数名后面加()就可以调用函数<!-- raw HTML omitted -->setter：让对象的属性可以被改写<!-- raw HTML omitted --><strong>代码示例：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">姓</span><span class="o">:</span> <span class="s2">&#34;周&#34;</span><span class="p">,</span>
+  <span class="nx">名</span><span class="o">:</span> <span class="s2">&#34;杰伦&#34;</span><span class="p">,</span>
+  <span class="nx">get</span> <span class="nx">姓名</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">姓</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">名</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">set</span> <span class="nx">姓名</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">姓</span> <span class="o">=</span> <span class="nx">str</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">名</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">姓名</span><span class="p">);</span> <span class="c1">//get， output：周杰伦
+</span><span class="c1"></span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">姓名</span> <span class="o">=</span> <span class="s2">&#34;王力宏&#34;</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`姓 </span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">姓</span><span class="si">}</span><span class="sb">，名 </span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">名</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="c1">//get， output：姓 王，名 力宏
+</span></code></pre></div><p>还可以在</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">set</span><span class="p">(){</span>
+	<span class="nx">对参数x做下判断</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">姓</span><span class="o">:</span> <span class="s2">&#34;周&#34;</span><span class="p">,</span>
+  <span class="nx">名</span><span class="o">:</span> <span class="s2">&#34;杰伦&#34;</span><span class="p">,</span>
+  <span class="nx">get</span> <span class="nx">姓名</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">姓</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">名</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">set</span> <span class="nx">姓名</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`姓名不能超过4个字符!`</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`姓名修改成功`</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">姓</span> <span class="o">=</span> <span class="nx">str</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">名</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">姓名</span><span class="p">);</span> <span class="c1">//get,output:周杰伦
+</span><span class="c1"></span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">姓名</span> <span class="o">=</span> <span class="s2">&#34;钮钴禄·甄嬛&#34;</span><span class="p">;</span> <span class="c1">//触发了set,output:姓名不能超过4个字符!
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`姓 </span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">姓</span><span class="si">}</span><span class="sb">，名 </span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">名</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="c1">//set,output:姓 周，名 杰伦
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="2回顾-es6-的-objectdefineproperty">2.回顾 ES6 的 Object.defineProperty</h1>
+<p>作用：定义一个对象之后，再额外添加<code>getter/setter</code>，或者属性的<code>value</code>。<!-- raw HTML omitted -->MDN 定义：会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。<!-- raw HTML omitted -->注意：</p>
+<ul>
+<li>应当直接在 <code>Object</code>构造器对象上调用此方法，而不是在任意一个 Object 类型的实例上调用。</li>
+<li>数据描述符和存取描述符不能混合使用（即不能同时给属性赋值和添加 getter/setter 方法）</li>
+</ul>
+<p><strong>代码示例：</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="s2">&#34;周&#34;</span><span class="p">;</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s2">&#34;姓&#34;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">get</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;访问obj的姓！&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">set</span><span class="p">(</span><span class="nx">newValue</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;改变obj的姓&#34;</span><span class="p">);</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="nx">newValue</span><span class="p">;</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">姓</span><span class="p">;</span> <span class="c1">//output:访问obj的姓！&#34;周&#34;
+</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">姓</span> <span class="o">=</span> <span class="s2">&#34;金&#34;</span><span class="p">;</span> <span class="c1">//output:改变obj的姓 &#34;金&#34;
+</span><span class="c1"></span><span class="nx">obj</span><span class="p">.</span><span class="nx">姓</span><span class="p">;</span> <span class="c1">//output:访问obj的姓！&#34;金&#34;
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="3代理模式proxy-pattern">3.代理模式（Proxy pattern）</h1>
+<p>顾名思义，代理模式是一种<strong>设计模式</strong>。<!-- raw HTML omitted -->代理对象可以在客户端和目标对象之间起到<strong>中介</strong>的作用，并且可以通过代理对象去掉客户不能看到的内容和服务或者添加客户需要的额外服务。<!-- raw HTML omitted -->目的：<strong>引入代理对象来间接访问一个对象</strong>，以防用户直接使用或篡改<code>data</code> 里的数据。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="4vue-的数据响应">4.Vue 的数据响应</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span> <span class="nx">data</span><span class="o">:</span> <span class="nx">myData</span> <span class="p">});</span>
+</code></pre></div><p>Vue 如何实现数据响应？<!-- raw HTML omitted -->——即数据一旦变化，页面数据立即变化。无需频繁操作 DOM。<!-- raw HTML omitted --><strong>具体思想：</strong></p>
+<ol>
+<li>让<code>Vue</code>的实例<code>vm</code>成为<code>myData</code>的代理对象</li>
+<li><code>vm</code>会对<code>myData</code>的所有属性进行监听</li>
+<li>一旦属性变化，<code>vm</code>就调用<code>render(data)</code>更新视图层</li>
+</ol>
+<p><!-- raw HTML omitted --><strong>Vue2</strong>通过<code>Object.defineProperty</code>对<code>data</code>的数据使用<code>getter</code>和<code>setter</code>改造，来实现数据响应<!-- raw HTML omitted -->首先使用<strong>代理思想</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">data3</span> <span class="o">=</span> <span class="nx">proxy</span><span class="p">({</span> <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span> <span class="p">}</span> <span class="p">});</span> <span class="c1">// 括号里是匿名对象，无法访问
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">proxy</span><span class="p">({</span> <span class="nx">data</span> <span class="p">}</span> <span class="cm">/* 解构赋值 */</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="c1">// 这里的 &#39;n&#39; 写死了，理论上应该遍历 data 的所有 key，这里做了简化
+</span><span class="c1"></span>  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s2">&#34;n&#34;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">n</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+      <span class="nx">data</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+  <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span> <span class="c1">// obj 就是代理
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="c1">// data3 就是 obj
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`需求三：</span><span class="si">${</span><span class="nx">data3</span><span class="p">.</span><span class="nx">n</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="nx">data3</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`需求三：</span><span class="si">${</span><span class="nx">data3</span><span class="p">.</span><span class="nx">n</span><span class="si">}</span><span class="sb">，设置为 -1 失败`</span><span class="p">);</span>
+<span class="nx">data3</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`需求三：</span><span class="si">${</span><span class="nx">data3</span><span class="p">.</span><span class="nx">n</span><span class="si">}</span><span class="sb">，设置为 1 成功`</span><span class="p">);</span>
+</code></pre></div><p>但是用户还是可以修改<code>data</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">myData</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span> <span class="p">};</span>
+<span class="kd">let</span> <span class="nx">data4</span> <span class="o">=</span> <span class="nx">proxy</span><span class="p">({</span> <span class="nx">data</span><span class="o">:</span> <span class="nx">myData</span> <span class="p">});</span>
+</code></pre></div><p>要想实现，就算用户修改<code>data</code>还是要经过代理，就要使用<strong>数据监听</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">myData5</span> <span class="o">=</span> <span class="p">{</span><span class="nx">n</span><span class="o">:</span><span class="mi">0</span><span class="p">}</span>
+<span class="kd">let</span> <span class="nx">data5</span> <span class="o">=</span> <span class="nx">proxy2</span><span class="p">({</span> <span class="nx">data</span><span class="o">:</span><span class="nx">myData5</span> <span class="p">})</span> <span class="c1">// 括号里是匿名对象，无法访问
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">proxy2</span><span class="p">({</span><span class="nx">data</span><span class="p">}</span><span class="cm">/* 解构赋值 */</span><span class="p">){</span>
+  <span class="c1">// 这里的 &#39;n&#39; 写死了，理论上应该遍历 data 的所有 key，这里做了简化
+</span><span class="c1"></span>  <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">n</span> <span class="c1">//加上这句，用value记下myData5里的n（即数据监听）
+</span><span class="c1"></span>  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="p">{</span><span class="c1">//一旦对n进行getter，setter。原来的n就没了，返回value
+</span><span class="c1"></span>    <span class="nx">get</span><span class="p">(){</span>
+      <span class="k">return</span> <span class="nx">value</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="p">(</span><span class="nx">newValue</span><span class="p">){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">newValue</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span><span class="k">return</span>
+      <span class="nx">value</span> <span class="o">=</span> <span class="nx">newValue</span>
+    <span class="p">}</span>
+  <span class="p">})</span>
+</code></pre></div><p>这样的话，用户修改<code>data</code>，必须经过代理。<!-- raw HTML omitted -->​</p>
+<p><strong>总结：Vue 对 data 就是做了以上两件事：使用代理对象，对数据进行监听</strong><!-- raw HTML omitted --><strong>​</strong></p>
+<p><strong>监听的作用：一旦数据改变，就立即进行视图上的更新</strong><!-- raw HTML omitted --><strong>​</strong><!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="5objectdefineproperty-有-bug">5.Object.defineProperty 有 bug</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">,{...})</span>
+</code></pre></div><p><code>Object.defineProperty</code>方法必须要有一个<code>n</code>，才能代理&amp;监听 <code>obj.n</code><!-- raw HTML omitted -->即<code>Vue</code>无法监听一开始就不存在的<code>obj.n</code><!-- raw HTML omitted --><strong>解决：</strong></p>
+<ol>
+<li>把 key 声明好，后面再加 value</li>
+<li>使用<code>vue.set</code>或<code>this.$set</code></li>
+</ol>
+<p><strong>但是：data 里面如果有数组，无法提前声明好所有 key</strong><!-- raw HTML omitted --><strong>解决：</strong></p>
+<ol>
+<li>使用<code>vue.set</code>或<code>this.$set</code>（较麻烦）</li>
+<li>所以使用<code>array.push</code>（不过与 JS 不同）
+<blockquote>
+<p>Vue 的 Array 与 JS 的 Array 有几个同名的原型，但多了一个作用</p>
+</blockquote>
+</li>
+</ol>
+<p>​</p>
+<p>补充：可尝试继续深入 Vue reactivity 原理（Vue3 的 proxy）。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/webpack%E4%BD%BF%E7%94%A8/" class="prev" rel="prev" title="Webpack使用"><i class="fas fa-angle-left fa-fw"></i>Webpack使用</a>
+            <a href="/posts/vue%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%8C%87%E4%BB%A4%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="next" rel="next" title="Vue之模板，指令与修饰符">Vue之模板，指令与修饰符<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

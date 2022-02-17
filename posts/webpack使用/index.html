@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Webpack使用 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="Webpack使用" />
+<meta property="og:description" content="1.转译 JS 参考webpack 文档 ​npm init -y 创建package.json文件 使用 yarn 局部安装：yarn add webpack@4 webpack-cli@3 --dev 创建node_modules文件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/webpack%E4%BD%BF%E7%94%A8/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T15:31:25+08:00" />
+<meta property="article:modified_time" content="2022-02-14T15:31:25+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Webpack使用"/>
+<meta name="twitter:description" content="1.转译 JS 参考webpack 文档 ​npm init -y 创建package.json文件 使用 yarn 局部安装：yarn add webpack@4 webpack-cli@3 --dev 创建node_modules文件"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/webpack%E4%BD%BF%E7%94%A8/" /><link rel="prev" href="https://luuu4129955.github.io/posts/%E5%B8%B8%E8%AF%B4%E7%9A%84mvc%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88/" /><link rel="next" href="https://luuu4129955.github.io/posts/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Webpack使用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/webpack%E4%BD%BF%E7%94%A8\/"
+        },"genre": "posts","wordcount":  1970 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/webpack%E4%BD%BF%E7%94%A8\/","datePublished": "2022-02-14T15:31:25+08:00","dateModified": "2022-02-14T15:31:25+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Webpack使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1970 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#loader">loader</a></li>
+    <li><a href="#plugin">plugin</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="1转译-js">1.转译 JS</h1>
+<p>参考<a href="https://webpack.js.org/guides/getting-started/" target="_blank" rel="noopener noreffer">webpack 文档</a><!-- raw HTML omitted --><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634478571798-6015ad6e-bee2-41ad-8495-89df23850875.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=107&amp;id=u889c6df4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=213&amp;originWidth=194&amp;originalType=binary&amp;ratio=1&amp;size=11196&amp;status=done&amp;style=none&amp;taskId=uc129d58f-998f-4b42-b66e-41ea8e4eef4&amp;width=97"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634478571798-6015ad6e-bee2-41ad-8495-89df23850875.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=107&amp;id=u889c6df4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=213&amp;originWidth=194&amp;originalType=binary&amp;ratio=1&amp;size=11196&amp;status=done&amp;style=none&amp;taskId=uc129d58f-998f-4b42-b66e-41ea8e4eef4&amp;width=97, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634478571798-6015ad6e-bee2-41ad-8495-89df23850875.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=107&amp;id=u889c6df4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=213&amp;originWidth=194&amp;originalType=binary&amp;ratio=1&amp;size=11196&amp;status=done&amp;style=none&amp;taskId=uc129d58f-998f-4b42-b66e-41ea8e4eef4&amp;width=97 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634478571798-6015ad6e-bee2-41ad-8495-89df23850875.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=107&amp;id=u889c6df4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=213&amp;originWidth=194&amp;originalType=binary&amp;ratio=1&amp;size=11196&amp;status=done&amp;style=none&amp;taskId=uc129d58f-998f-4b42-b66e-41ea8e4eef4&amp;width=97 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634478571798-6015ad6e-bee2-41ad-8495-89df23850875.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=107&amp;id=u889c6df4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=213&amp;originWidth=194&amp;originalType=binary&amp;ratio=1&amp;size=11196&amp;status=done&amp;style=none&amp;taskId=uc129d58f-998f-4b42-b66e-41ea8e4eef4&amp;width=97"
+        title="image.png" /></p>
+<ol>
+<li>​<code>npm init -y</code></li>
+</ol>
+<ul>
+<li>创建<code>package.json</code>文件</li>
+</ul>
+<ol start="2">
+<li>使用 yarn 局部安装：<code>yarn add webpack@4 webpack-cli@3 --dev</code></li>
+</ol>
+<ul>
+<li>创建<code>node_modules</code>文件夹</li>
+</ul>
+<ol start="3">
+<li>调用本地安装的 webpack：<code>./node_modules/.bin/webpack --version</code></li>
+</ol>
+<ul>
+<li>版本号：<code>4.46.0</code></li>
+</ul>
+<p><!-- raw HTML omitted -->或者<code>npx webpack</code>（不用记路径，但不稳定可能会报错）</p>
+<ul>
+<li>创建<code>dist/main.js</code></li>
+</ul>
+<p><strong>有警告，怎么办？找文档！</strong><!-- raw HTML omitted --><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634479859473-334c565a-f20f-4459-bd54-fc3c7c5ce6f8.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=65&amp;id=u646c89f1&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=130&amp;originWidth=1850&amp;originalType=binary&amp;ratio=1&amp;size=34835&amp;status=done&amp;style=none&amp;taskId=ucfed4a77-4387-4740-a0ee-7b636a2b509&amp;width=925"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634479859473-334c565a-f20f-4459-bd54-fc3c7c5ce6f8.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=65&amp;id=u646c89f1&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=130&amp;originWidth=1850&amp;originalType=binary&amp;ratio=1&amp;size=34835&amp;status=done&amp;style=none&amp;taskId=ucfed4a77-4387-4740-a0ee-7b636a2b509&amp;width=925, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634479859473-334c565a-f20f-4459-bd54-fc3c7c5ce6f8.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=65&amp;id=u646c89f1&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=130&amp;originWidth=1850&amp;originalType=binary&amp;ratio=1&amp;size=34835&amp;status=done&amp;style=none&amp;taskId=ucfed4a77-4387-4740-a0ee-7b636a2b509&amp;width=925 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634479859473-334c565a-f20f-4459-bd54-fc3c7c5ce6f8.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=65&amp;id=u646c89f1&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=130&amp;originWidth=1850&amp;originalType=binary&amp;ratio=1&amp;size=34835&amp;status=done&amp;style=none&amp;taskId=ucfed4a77-4387-4740-a0ee-7b636a2b509&amp;width=925 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634479859473-334c565a-f20f-4459-bd54-fc3c7c5ce6f8.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=65&amp;id=u646c89f1&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=130&amp;originWidth=1850&amp;originalType=binary&amp;ratio=1&amp;size=34835&amp;status=done&amp;style=none&amp;taskId=ucfed4a77-4387-4740-a0ee-7b636a2b509&amp;width=925"
+        title="image.png" /><!-- raw HTML omitted --><a href="https://webpack.js.org/configuration/" target="_blank" rel="noopener noreffer">webpack 配置</a><!-- raw HTML omitted -->新建<code>webpack.config.js</code>文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">mode</span><span class="o">:</span> <span class="s2">&#34;development&#34;</span><span class="p">,</span> <span class="c1">// &#34;production&#34; | &#34;development&#34; | &#34;none&#34;
+</span><span class="c1"></span><span class="p">};</span>
+<span class="c1">//development 给开发者用，main.js中有注释，production给用户用，没有注释体积更小
+</span></code></pre></div><hr>
+<p>继续配置<code>entry</code>和<code>output</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">mode</span><span class="o">:</span> <span class="s2">&#34;development&#34;</span><span class="p">,</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="s2">&#34;./src/index.js&#34;</span><span class="p">,</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&#34;[name].[contenthash].js&#34;</span><span class="p">,</span> <span class="c1">//注意contenthash
+</span><span class="c1"></span>  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div><p>运行<code>npx webpack</code>：生成<code>main.eab27a4c79b27f2b3b0c.js</code>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="2文件名中-hash-的作用缓存">2.文件名中 hash 的作用：缓存</h1>
+<p><strong>HTTP 缓存:</strong><!-- raw HTML omitted --><strong>是 HTTP 协议规定的，浏览器必须支持。</strong><!-- raw HTML omitted -->举例：第一次访问<code>baidu.com</code>，进入首页<code>index.html</code>,同时加载了<code>index.html</code>中引入的<code>css</code>，<code>js</code>文件。<!-- raw HTML omitted -->为了实现超快访问，可以在响应头里（<code>Cache-Control</code>）设置为一年缓存，之后再访问，就能从硬盘中读取，加快访问速度。<!-- raw HTML omitted -->如果<code>css</code>，<code>js</code>有更新，那么重新<code>npx webpack</code>打包一下就能生成新的带 hash 的文件名，浏览器发现文件名不同，就会下载新资源。<!-- raw HTML omitted -->为了避免<code>dist</code>目录下生成太多文件，需要先删除<code>dist</code>目录再打包，即<code>rm -rf dist;npx webpack</code><!-- raw HTML omitted --><strong>方便起见：</strong><!-- raw HTML omitted -->将这一行写到<code>package.json</code>文件中即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;build&#34;</span><span class="o">:</span> <span class="s2">&#34;rm -rf dist &amp;&amp; webpack&#34;</span><span class="c1">//用;分隔命令行有bug，没有执行webpack
+</span><span class="c1"></span>  <span class="p">}</span>
+</code></pre></div><p>试着修改<code>index.js</code>中的内容，然后直接<code>build</code>：</p>
+<ul>
+<li><code>yarn build</code></li>
+<li>或者<code>npm run build</code></li>
+</ul>
+<p>会生成<code>main.10a28dc1eb6cbd2ffa03.js</code>文件
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="3生成-html">3.生成 HTML</h1>
+<p><a href="https://webpack.js.org/plugins/html-webpack-plugin/" target="_blank" rel="noopener noreffer">参考文档</a><!-- raw HTML omitted --><code>webpack.config.js</code>文件配置如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;html-webpack-plugin&#34;</span><span class="p">);</span> <span class="c1">//installed via npm
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;webpack&#34;</span><span class="p">);</span> <span class="c1">//to access built-in plugins
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">mode</span><span class="o">:</span> <span class="s2">&#34;development&#34;</span><span class="p">,</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="s2">&#34;./src/index.js&#34;</span><span class="p">,</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&#34;[name].[contenthash].js&#34;</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;webpack 测试1&#34;</span><span class="p">,</span>
+      <span class="nx">template</span><span class="o">:</span> <span class="s2">&#34;src/assets/index.html&#34;</span><span class="p">,</span>
+    <span class="p">}),</span>
+  <span class="p">],</span>
+<span class="p">};</span>
+</code></pre></div><p>运行<code>yarn build</code>报错。<!-- raw HTML omitted -->解决如下：<!-- raw HTML omitted -->修改<code>package.json</code>里的配置如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack-1&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;version&#34;</span><span class="o">:</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;description&#34;</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;main&#34;</span><span class="o">:</span> <span class="s2">&#34;index.js&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;build&#34;</span><span class="o">:</span> <span class="s2">&#34;rm -rf dist &amp;&amp; webpack&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;test&#34;</span><span class="o">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span>
+  <span class="p">},</span>
+  <span class="s2">&#34;keywords&#34;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&#34;author&#34;</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;license&#34;</span><span class="o">:</span> <span class="s2">&#34;ISC&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;devDependencies&#34;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;css-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.2.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;dart-sass&#34;</span><span class="o">:</span> <span class="s2">&#34;^1.23.7&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;file-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^5.0.2&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;html-webpack-plugin&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.2.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;less&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.10.3&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;less-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^5.0.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;mini-css-extract-plugin&#34;</span><span class="o">:</span> <span class="s2">&#34;^0.8.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;sass-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^8.0.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;style-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^1.0.1&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;stylus&#34;</span><span class="o">:</span> <span class="s2">&#34;^0.54.7&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;stylus-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.0.2&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;webpack&#34;</span><span class="o">:</span> <span class="s2">&#34;^4.41.2&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;webpack-cli&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.3.10&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;webpack-dev-server&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.9.0&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div><p>再运行<code>yarn install</code>。<!-- raw HTML omitted -->重新运行<code>yarn build</code>，成功生成<code>./dist/index.html</code>如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="o">&lt;!</span><span class="nx">DOCTYPE</span> <span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;</span><span class="nx">Webpack</span> <span class="nx">App</span><span class="o">&lt;</span><span class="err">/title&gt;</span>
+  <span class="o">&lt;</span><span class="err">/head&gt;</span>
+  <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;text/javascript&#34;</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;main.10a28dc1eb6cbd2ffa03.js&#34;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;&lt;/body&gt;</span>
+<span class="o">&lt;</span><span class="err">/html&gt;</span>
+</code></pre></div><p>修改<code>index.js</code>的内容再打包，html 中引入的 JS 文件名也同步更改为新生成的 hash 文件名。<!-- raw HTML omitted --><code>src/assets/index.html</code>文件的 title 使用配置里的，meta 标签 copy 淘宝手机版的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="o">&lt;!</span><span class="nx">doctype</span> <span class="nx">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">html</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&#34;zh&#34;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">head</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">charset</span><span class="o">=</span><span class="s2">&#34;UTF-8&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;viewport&#34;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&#34;width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">meta</span> <span class="nx">http</span><span class="o">-</span><span class="nx">equiv</span><span class="o">=</span><span class="s2">&#34;X-UA-Compatible&#34;</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&#34;ie=edge&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">title</span><span class="o">&gt;&lt;%=</span> <span class="nx">htmlWebpackPlugin</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">title</span> <span class="o">%&gt;&lt;</span><span class="err">/title&gt;</span>
+<span class="o">&lt;</span><span class="err">/head&gt;</span>
+<span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;app&#34;</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
+<span class="o">&lt;</span><span class="err">/body&gt;</span>
+<span class="o">&lt;</span><span class="err">/html&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="4引入-css">4.引入 CSS</h1>
+<p>首先安装：<!-- raw HTML omitted --><code>npm install --save-dev css-loader</code><!-- raw HTML omitted --><code>npm install --save-dev style-loader</code><!-- raw HTML omitted -->​</p>
+<p>然后<code>webpack.config.js</code>文件配置如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;html-webpack-plugin&#34;</span><span class="p">);</span> <span class="c1">//installed via npm
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;webpack&#34;</span><span class="p">);</span> <span class="c1">//to access built-in plugins
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">mode</span><span class="o">:</span> <span class="s2">&#34;development&#34;</span><span class="p">,</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="s2">&#34;./src/index.js&#34;</span><span class="p">,</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&#34;[name].[contenthash].js&#34;</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;webpack 测试1&#34;</span><span class="p">,</span>
+      <span class="nx">template</span><span class="o">:</span> <span class="s2">&#34;src/assets/index.html&#34;</span><span class="p">,</span>
+    <span class="p">}),</span>
+  <span class="p">],</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/i</span><span class="p">,</span>
+        <span class="nx">use</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;style-loader&#34;</span><span class="p">,</span> <span class="s2">&#34;css-loader&#34;</span><span class="p">],</span>
+        <span class="c1">//css-loader把js导入的css内容解析为字符串，
+</span><span class="c1"></span>        <span class="c1">//style-loader把字符串加上style标签放到html里的head标签中
+</span><span class="c1"></span>      <span class="p">},</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div><p><code>yarn build</code>报错？先运行<code>yarn install</code>！
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="5引入-scss">5.引入 SCSS</h1>
+<p>优先使用<code>dart-scss</code>，而非<code>node-scss</code><!-- raw HTML omitted -->​<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="使用-webpack-dev-server">.使用 webpack-dev-server</h1>
+<p><a href="https://webpack.js.org/guides/development/" target="_blank" rel="noopener noreffer">参考文档</a><!-- raw HTML omitted -->安装：<code>yarn add webpack-dev-server --dev</code><!-- raw HTML omitted --><code>webpack.config.js</code>文件配置如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;html-webpack-plugin&#34;</span><span class="p">);</span> <span class="c1">//installed via npm
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;webpack&#34;</span><span class="p">);</span> <span class="c1">//to access built-in plugins
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">mode</span><span class="o">:</span> <span class="s2">&#34;development&#34;</span><span class="p">,</span>
+  <span class="nx">devtool</span><span class="o">:</span> <span class="s2">&#34;inline-source-map&#34;</span><span class="p">,</span> <span class="c1">//新增
+</span><span class="c1"></span>  <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">contentBase</span><span class="o">:</span> <span class="s2">&#34;./dist&#34;</span><span class="p">,</span>
+  <span class="p">},</span> <span class="c1">//新增
+</span><span class="c1"></span>  <span class="nx">entry</span><span class="o">:</span> <span class="s2">&#34;./src/index.js&#34;</span><span class="p">,</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&#34;[name].[contenthash].js&#34;</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;webpack 测试1&#34;</span><span class="p">,</span>
+      <span class="nx">template</span><span class="o">:</span> <span class="s2">&#34;src/assets/index.html&#34;</span><span class="p">,</span>
+    <span class="p">}),</span>
+  <span class="p">],</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/i</span><span class="p">,</span>
+        <span class="nx">use</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;style-loader&#34;</span><span class="p">,</span> <span class="s2">&#34;css-loader&#34;</span><span class="p">],</span>
+      <span class="p">},</span>
+    <span class="p">],</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div><p><code>package.json</code>里的配置如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack-1&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;version&#34;</span><span class="o">:</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;description&#34;</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;main&#34;</span><span class="o">:</span> <span class="s2">&#34;index.js&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;start&#34;</span><span class="o">:</span> <span class="s2">&#34;webpack-dev-server&#34;</span><span class="p">,</span><span class="c1">//新增
+</span><span class="c1"></span>    <span class="s2">&#34;build&#34;</span><span class="o">:</span> <span class="s2">&#34;rm -rf dist &amp;&amp; webpack&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;test&#34;</span><span class="o">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span>
+  <span class="p">},</span>
+  <span class="s2">&#34;keywords&#34;</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="s2">&#34;author&#34;</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;license&#34;</span><span class="o">:</span> <span class="s2">&#34;ISC&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;devDependencies&#34;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;@webpack-cli/serve&#34;</span><span class="o">:</span> <span class="s2">&#34;^1.6.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;css-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.6.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;dart-sass&#34;</span><span class="o">:</span> <span class="s2">&#34;^1.23.7&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;file-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^5.0.2&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;html-webpack-plugin&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.2.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;less&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.10.3&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;less-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^5.0.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;mini-css-extract-plugin&#34;</span><span class="o">:</span> <span class="s2">&#34;^0.8.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;sass-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^8.0.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;style-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^1.3.0&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;stylus&#34;</span><span class="o">:</span> <span class="s2">&#34;^0.54.7&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;stylus-loader&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.0.2&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;webpack&#34;</span><span class="o">:</span> <span class="s2">&#34;^4.41.2&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;webpack-cli&#34;</span><span class="o">:</span> <span class="s2">&#34;^3.3.10&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;webpack-dev-server&#34;</span><span class="o">:</span> <span class="s2">&#34;^4.3.1&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div><p>运行<code>yarn start</code>或<code>npm run start</code><!-- raw HTML omitted -->报错了
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="loaderplugin-区别">.loader/plugin 区别</h1>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="loader">loader</h2>
+<ul>
+<li><code>loader</code>是加载器</li>
+<li>作用：进行单一地文件转换</li>
+<li>将我们项目源码中的一些浏览器不支持代码转换成浏览器能够支持的代码。</li>
+<li>举例 1：<code>babel-loader</code>把高级 JS 转换为 IE 支持的 JS</li>
+<li>举例 2：<code>style-loader</code>和<code>css-loader</code>用来加载<code>css</code>文件，把其加上<code>style</code>标签放到页面中
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="plugin">plugin</h2>
+<ul>
+<li><code>plugin</code>是插件</li>
+<li>作用：它直接作用于<code>webpack</code>，扩展了<code>webpack</code>功能</li>
+<li>针对的是<code>loader</code>结束后，<code>webpack</code>打包的整个过程</li>
+<li>举例 1：用<code>mini-css-extract-plugin</code>插件，抽取多个<code>css</code>文件的代码将其合并为一个<code>css</code>文件</li>
+<li>举例 2：用``html-webpack-plugin<code>插件，将 0 个或 1 个</code>html<code>文件转换为一个引入了</code>css<code>和</code>js<code>的</code>html`文件</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%B8%B8%E8%AF%B4%E7%9A%84mvc%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88/" class="prev" rel="prev" title="常说的MVC到底是什么？"><i class="fas fa-angle-left fa-fw"></i>常说的MVC到底是什么？</a>
+            <a href="/posts/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/" class="next" rel="next" title="Vue数据响应式">Vue数据响应式<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

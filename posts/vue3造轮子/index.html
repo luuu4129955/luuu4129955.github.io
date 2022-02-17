@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Vue3造轮子项目记录 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="Vue3造轮子项目记录" />
+<meta property="og:description" content="这是关于我的 Vue3 造轮子项目的一个记录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/vue3%E9%80%A0%E8%BD%AE%E5%AD%90/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T15:31:25+08:00" />
+<meta property="article:modified_time" content="2022-02-14T15:31:25+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vue3造轮子项目记录"/>
+<meta name="twitter:description" content="这是关于我的 Vue3 造轮子项目的一个记录"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/vue3%E9%80%A0%E8%BD%AE%E5%AD%90/" /><link rel="prev" href="https://luuu4129955.github.io/posts/vue%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%8C%87%E4%BB%A4%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/" /><link rel="next" href="https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Vue3造轮子项目记录",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/vue3%E9%80%A0%E8%BD%AE%E5%AD%90\/"
+        },"genre": "posts","wordcount":  4168 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/vue3%E9%80%A0%E8%BD%AE%E5%AD%90\/","datePublished": "2022-02-14T15:31:25+08:00","dateModified": "2022-02-14T15:31:25+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Vue3造轮子项目记录</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4168 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#创建首页和文档页">创建首页和文档页</a></li>
+    <li><a href="#封装-topnav-组件">封装 Topnav 组件</a></li>
+    <li><a href="#实现-aside-切换provideinject">实现 aside 切换：provide&amp;inject</a></li>
+    <li><a href="#路由切换">路由切换</a></li>
+    <li><a href="#基本布局">基本布局</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#switch-组件contextemit">switch 组件：context.emit</a>
+      <ul>
+        <li><a href="#css">CSS</a></li>
+      </ul>
+    </li>
+    <li><a href="#button-组件">button 组件</a>
+      <ul>
+        <li><a href="#需求">需求：</a></li>
+        <li><a href="#api-设计">API 设计</a></li>
+        <li><a href="#添加事件属性绑定">添加事件&amp;属性绑定</a></li>
+        <li><a href="#让-button-支持-theme-属性">让 button 支持 theme 属性</a></li>
+      </ul>
+    </li>
+    <li><a href="#dialog-组件">dialog 组件</a>
+      <ul>
+        <li><a href="#需求-1">需求：</a></li>
+        <li><a href="#api-设计-1">API 设计</a></li>
+        <li><a href="#支持-visible-属性">支持 visible 属性</a></li>
+        <li><a href="#支持点击关闭">支持点击关闭</a></li>
+      </ul>
+    </li>
+    <li><a href="#tabs-组件">tabs 组件</a>
+      <ul>
+        <li><a href="#需求-2">需求：</a></li>
+        <li><a href="#api-设计-2">API 设计</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>这是关于我的 Vue3 造轮子项目的一个记录</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="1使用-vite-搭建官网">1.使用 Vite 搭建官网</h1>
+<ol>
+<li>全局安装<code>create-vite-app</code></li>
+</ol>
+<ul>
+<li><code>yarn global add create-vite-app@1.18.0</code></li>
+<li>或者<code>npm i -g create-vite-app@1.18.0</code></li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634627817894-56549cd2-933c-4e7d-9060-06620eb00a1d.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=84&amp;id=u40f538cb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=94&amp;originWidth=584&amp;originalType=binary&amp;ratio=1&amp;size=9983&amp;status=done&amp;style=none&amp;taskId=u1dce2a8f-4a08-49b3-b336-45136bde217&amp;width=522"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634627817894-56549cd2-933c-4e7d-9060-06620eb00a1d.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=84&amp;id=u40f538cb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=94&amp;originWidth=584&amp;originalType=binary&amp;ratio=1&amp;size=9983&amp;status=done&amp;style=none&amp;taskId=u1dce2a8f-4a08-49b3-b336-45136bde217&amp;width=522, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634627817894-56549cd2-933c-4e7d-9060-06620eb00a1d.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=84&amp;id=u40f538cb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=94&amp;originWidth=584&amp;originalType=binary&amp;ratio=1&amp;size=9983&amp;status=done&amp;style=none&amp;taskId=u1dce2a8f-4a08-49b3-b336-45136bde217&amp;width=522 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634627817894-56549cd2-933c-4e7d-9060-06620eb00a1d.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=84&amp;id=u40f538cb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=94&amp;originWidth=584&amp;originalType=binary&amp;ratio=1&amp;size=9983&amp;status=done&amp;style=none&amp;taskId=u1dce2a8f-4a08-49b3-b336-45136bde217&amp;width=522 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634627817894-56549cd2-933c-4e7d-9060-06620eb00a1d.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=84&amp;id=u40f538cb&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=94&amp;originWidth=584&amp;originalType=binary&amp;ratio=1&amp;size=9983&amp;status=done&amp;style=none&amp;taskId=u1dce2a8f-4a08-49b3-b336-45136bde217&amp;width=522"
+        title="image.png" /></p>
+<ol start="2">
+<li>创建项目目录——Neko-UI</li>
+</ol>
+<p>执行<code>cva NeKo-UI</code><!-- raw HTML omitted -->vite 文档给出的命令是<!-- raw HTML omitted -->npm init vite-app <!-- raw HTML omitted --><!-- raw HTML omitted -->yarn create vite-app <!-- raw HTML omitted --><!-- raw HTML omitted -->等价于<!-- raw HTML omitted -->全局安装 create-vite-app 然后<!-- raw HTML omitted -->cva <!-- raw HTML omitted --><!-- raw HTML omitted -->等价于<!-- raw HTML omitted -->npx createa-vite-app <!-- raw HTML omitted --><!-- raw HTML omitted -->即 npx 会帮你全局安装用到的包<!-- raw HTML omitted -->​</p>
+<p>​</p>
+<p>方的 Vite 版本号是<code>v1.0.0-rc.3</code>，我的没打印出版本号<!-- raw HTML omitted --><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628700987-9c51f96b-623b-43e1-b728-00b31ece1eb1.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=56&amp;id=u07ba5dfc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=112&amp;originWidth=577&amp;originalType=binary&amp;ratio=1&amp;size=49412&amp;status=done&amp;style=none&amp;taskId=u1c7ff48f-5db0-4d3b-8fb9-644555d75f4&amp;width=288.5"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628700987-9c51f96b-623b-43e1-b728-00b31ece1eb1.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=56&amp;id=u07ba5dfc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=112&amp;originWidth=577&amp;originalType=binary&amp;ratio=1&amp;size=49412&amp;status=done&amp;style=none&amp;taskId=u1c7ff48f-5db0-4d3b-8fb9-644555d75f4&amp;width=288.5, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628700987-9c51f96b-623b-43e1-b728-00b31ece1eb1.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=56&amp;id=u07ba5dfc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=112&amp;originWidth=577&amp;originalType=binary&amp;ratio=1&amp;size=49412&amp;status=done&amp;style=none&amp;taskId=u1c7ff48f-5db0-4d3b-8fb9-644555d75f4&amp;width=288.5 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628700987-9c51f96b-623b-43e1-b728-00b31ece1eb1.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=56&amp;id=u07ba5dfc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=112&amp;originWidth=577&amp;originalType=binary&amp;ratio=1&amp;size=49412&amp;status=done&amp;style=none&amp;taskId=u1c7ff48f-5db0-4d3b-8fb9-644555d75f4&amp;width=288.5 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628700987-9c51f96b-623b-43e1-b728-00b31ece1eb1.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=56&amp;id=u07ba5dfc&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=112&amp;originWidth=577&amp;originalType=binary&amp;ratio=1&amp;size=49412&amp;status=done&amp;style=none&amp;taskId=u1c7ff48f-5db0-4d3b-8fb9-644555d75f4&amp;width=288.5"
+        title="image.png" /><!-- raw HTML omitted -->本地预览效果：<!-- raw HTML omitted --><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628728254-db75ee0b-20b5-4fe6-b4a6-df59ae5a9de8.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=447&amp;id=ua8049b63&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=894&amp;originWidth=1804&amp;originalType=binary&amp;ratio=1&amp;size=90165&amp;status=done&amp;style=none&amp;taskId=u65bd3cd4-5820-48e1-bc8e-943848b0bef&amp;width=902"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628728254-db75ee0b-20b5-4fe6-b4a6-df59ae5a9de8.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=447&amp;id=ua8049b63&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=894&amp;originWidth=1804&amp;originalType=binary&amp;ratio=1&amp;size=90165&amp;status=done&amp;style=none&amp;taskId=u65bd3cd4-5820-48e1-bc8e-943848b0bef&amp;width=902, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628728254-db75ee0b-20b5-4fe6-b4a6-df59ae5a9de8.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=447&amp;id=ua8049b63&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=894&amp;originWidth=1804&amp;originalType=binary&amp;ratio=1&amp;size=90165&amp;status=done&amp;style=none&amp;taskId=u65bd3cd4-5820-48e1-bc8e-943848b0bef&amp;width=902 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628728254-db75ee0b-20b5-4fe6-b4a6-df59ae5a9de8.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=447&amp;id=ua8049b63&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=894&amp;originWidth=1804&amp;originalType=binary&amp;ratio=1&amp;size=90165&amp;status=done&amp;style=none&amp;taskId=u65bd3cd4-5820-48e1-bc8e-943848b0bef&amp;width=902 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634628728254-db75ee0b-20b5-4fe6-b4a6-df59ae5a9de8.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=447&amp;id=ua8049b63&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=894&amp;originWidth=1804&amp;originalType=binary&amp;ratio=1&amp;size=90165&amp;status=done&amp;style=none&amp;taskId=u65bd3cd4-5820-48e1-bc8e-943848b0bef&amp;width=902"
+        title="image.png" /></p>
+<ol start="3">
+<li>文件夹<code>NeKo-UI</code>拖到 VSCode 开发</li>
+</ol>
+<p>Vue2 和 Vue3 90%都是一致的。除了：</p>
+<ul>
+<li>Vue 3 的 Template 支持多个根标签，Vue 2 不支持</li>
+<li>Vue 3 的主函数是 createApp()，而 Vue 2 的是 new Vue()</li>
+<li>具体使用区别：createApp(组件)，new Vue({template, render})</li>
+</ul>
+<p>​</p>
+<p>记得 git commit 一下项目</p>
+<ol start="4">
+<li>引入 vue router4</li>
+</ol>
+<p>专门搭配 vue3 的路由器，用于页面的切换<!-- raw HTML omitted -->​</p>
+<p>安装它<!-- raw HTML omitted --><code>yarn add vue-router@4.0.0-beta.3</code></p>
+<ol>
+<li>创建 history 对象</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634630016935-e67e9230-62fd-46cc-a82f-8a187d6ed4f9.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=356&amp;id=u5e7b0562&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=712&amp;originWidth=1222&amp;originalType=binary&amp;ratio=1&amp;size=459578&amp;status=done&amp;style=none&amp;taskId=ue3c70ce5-c8e4-4376-b219-c38d8ce9687&amp;width=611"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634630016935-e67e9230-62fd-46cc-a82f-8a187d6ed4f9.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=356&amp;id=u5e7b0562&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=712&amp;originWidth=1222&amp;originalType=binary&amp;ratio=1&amp;size=459578&amp;status=done&amp;style=none&amp;taskId=ue3c70ce5-c8e4-4376-b219-c38d8ce9687&amp;width=611, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634630016935-e67e9230-62fd-46cc-a82f-8a187d6ed4f9.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=356&amp;id=u5e7b0562&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=712&amp;originWidth=1222&amp;originalType=binary&amp;ratio=1&amp;size=459578&amp;status=done&amp;style=none&amp;taskId=ue3c70ce5-c8e4-4376-b219-c38d8ce9687&amp;width=611 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634630016935-e67e9230-62fd-46cc-a82f-8a187d6ed4f9.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=356&amp;id=u5e7b0562&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=712&amp;originWidth=1222&amp;originalType=binary&amp;ratio=1&amp;size=459578&amp;status=done&amp;style=none&amp;taskId=ue3c70ce5-c8e4-4376-b219-c38d8ce9687&amp;width=611 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634630016935-e67e9230-62fd-46cc-a82f-8a187d6ed4f9.png#clientId=u0e6056b3-addd-4&amp;from=paste&amp;height=356&amp;id=u5e7b0562&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=712&amp;originWidth=1222&amp;originalType=binary&amp;ratio=1&amp;size=459578&amp;status=done&amp;style=none&amp;taskId=ue3c70ce5-c8e4-4376-b219-c38d8ce9687&amp;width=611"
+        title="image.png" /></p>
+<p>​</p>
+<p>Vue 3 can not find module<!-- raw HTML omitted -->出现原因：只能理解.ts，无法理解.vue<!-- raw HTML omitted --><a href="https://github.com/vuejs/vue-next-webpack-preview/issues/5" target="_blank" rel="noopener noreffer">解决办法</a><!-- raw HTML omitted -->创建 xxx.d.ts，告诉 TS 如何理解 .vue 文件（详见 shims-vue.d.ts）不过这个文件只有打开时，main.ts 才不报错<!-- raw HTML omitted -->不想每次打开 shims-vue.d.ts？<!-- raw HTML omitted -->那么你可以在项目跟目录创建一个 tsconfig.json 文件，文件内容为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;compilerOptions&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;target&#34;</span><span class="p">:</span> <span class="s2">&#34;esnext&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;module&#34;</span><span class="p">:</span> <span class="s2">&#34;esnext&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;strict&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&#34;jsx&#34;</span><span class="p">:</span> <span class="s2">&#34;preserve&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;moduleResolution&#34;</span><span class="p">:</span> <span class="s2">&#34;node&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><pre tabindex="0"><code class="language-git" data-lang="git">yarn dev  //开启本地预览
+</code></pre><p>3.添加 router-view，告诉在哪里显示（在要展示的组件里添加 router-view）<!-- raw HTML omitted -->4.添加 router-link，写跳转路径（一个内部的跳转）<!-- raw HTML omitted -->目前效果：<!-- raw HTML omitted --><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1635413234070-1ba73c45-bfc0-4fc3-9bc0-d13ac1f5dd6d.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=220&amp;id=u69e21014&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=439&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;size=13798&amp;status=done&amp;style=none&amp;taskId=u85aec1ef-8f5a-4c4c-ad6a-7e853151d3a&amp;width=557"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1635413234070-1ba73c45-bfc0-4fc3-9bc0-d13ac1f5dd6d.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=220&amp;id=u69e21014&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=439&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;size=13798&amp;status=done&amp;style=none&amp;taskId=u85aec1ef-8f5a-4c4c-ad6a-7e853151d3a&amp;width=557, https://cdn.nlark.com/yuque/0/2021/png/22429169/1635413234070-1ba73c45-bfc0-4fc3-9bc0-d13ac1f5dd6d.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=220&amp;id=u69e21014&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=439&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;size=13798&amp;status=done&amp;style=none&amp;taskId=u85aec1ef-8f5a-4c4c-ad6a-7e853151d3a&amp;width=557 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1635413234070-1ba73c45-bfc0-4fc3-9bc0-d13ac1f5dd6d.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=220&amp;id=u69e21014&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=439&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;size=13798&amp;status=done&amp;style=none&amp;taskId=u85aec1ef-8f5a-4c4c-ad6a-7e853151d3a&amp;width=557 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1635413234070-1ba73c45-bfc0-4fc3-9bc0-d13ac1f5dd6d.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=220&amp;id=u69e21014&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=439&amp;originWidth=1114&amp;originalType=binary&amp;ratio=1&amp;size=13798&amp;status=done&amp;style=none&amp;taskId=u85aec1ef-8f5a-4c4c-ad6a-7e853151d3a&amp;width=557"
+        title="image.png" />
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="创建首页和文档页">创建首页和文档页</h2>
+<ol>
+<li>首页 views/Home.vue</li>
+<li>文档页 views/Doc.vue</li>
+</ol>
+<p>Home.vue<!-- raw HTML omitted -->Topnav：左边是 logo，右边是 menu<!-- raw HTML omitted -->Banner：文字介绍 + 开始按钮<!-- raw HTML omitted -->​</p>
+<p>Doc.vue<!-- raw HTML omitted -->Topnav：同上<!-- raw HTML omitted -->Content：左边是 aside，右边是 main</p>
+<blockquote>
+<p>插曲：如果引入 scss 的时候提示找不到 scss 模块
+直接终端运行：<code>yarn add sass</code></p>
+</blockquote>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="封装-topnav-组件">封装 Topnav 组件</h2>
+<p>因为首页和文档页都需要用到 topnav 样式，就新建一个 Topnav 组件，把样式放进去。<!-- raw HTML omitted -->然后首页，文档页分别 import</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Topnav</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;banner&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">NeKo</span><span class="o">-</span><span class="nx">UI</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span><span class="nx">一个厉害的UI框架</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;actions&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">a</span><span class="p">&gt;</span><span class="nx">GitHub</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">a</span><span class="p">&gt;</span><span class="nx">开始</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;ts&#34;</span><span class="p">&gt;</span>
+<span class="kr">import</span> <span class="nx">Topnav</span> <span class="nx">from</span> <span class="s2">&#34;../components/Topnav.vue&#34;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">components</span><span class="o">:</span> <span class="p">{</span> <span class="nx">Topnav</span> <span class="p">},</span>
+<span class="p">};</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;scss&#34;</span> <span class="na">scoped</span><span class="p">&gt;&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="实现-aside-切换provideinject">实现 aside 切换：provide&amp;inject</h2>
+<p>手机端需求：点击 logo，aside 显示。再次点击，aside 隐藏</p>
+<blockquote>
+<p>要做成响应式布局。优先考虑手机端</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1635491413677-25a3c468-3543-480f-b8bf-899967a4ba3e.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=394&amp;id=u3d19d524&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=788&amp;originWidth=1201&amp;originalType=binary&amp;ratio=1&amp;size=343237&amp;status=done&amp;style=none&amp;taskId=u8800af07-8ecb-42fe-8ac6-30576dcdb0b&amp;width=600.5"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1635491413677-25a3c468-3543-480f-b8bf-899967a4ba3e.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=394&amp;id=u3d19d524&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=788&amp;originWidth=1201&amp;originalType=binary&amp;ratio=1&amp;size=343237&amp;status=done&amp;style=none&amp;taskId=u8800af07-8ecb-42fe-8ac6-30576dcdb0b&amp;width=600.5, https://cdn.nlark.com/yuque/0/2021/png/22429169/1635491413677-25a3c468-3543-480f-b8bf-899967a4ba3e.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=394&amp;id=u3d19d524&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=788&amp;originWidth=1201&amp;originalType=binary&amp;ratio=1&amp;size=343237&amp;status=done&amp;style=none&amp;taskId=u8800af07-8ecb-42fe-8ac6-30576dcdb0b&amp;width=600.5 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1635491413677-25a3c468-3543-480f-b8bf-899967a4ba3e.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=394&amp;id=u3d19d524&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=788&amp;originWidth=1201&amp;originalType=binary&amp;ratio=1&amp;size=343237&amp;status=done&amp;style=none&amp;taskId=u8800af07-8ecb-42fe-8ac6-30576dcdb0b&amp;width=600.5 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1635491413677-25a3c468-3543-480f-b8bf-899967a4ba3e.png#clientId=ueef7e1d7-5894-4&amp;from=paste&amp;height=394&amp;id=u3d19d524&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=788&amp;originWidth=1201&amp;originalType=binary&amp;ratio=1&amp;size=343237&amp;status=done&amp;style=none&amp;taskId=u8800af07-8ecb-42fe-8ac6-30576dcdb0b&amp;width=600.5"
+        title="image.png" /><!-- raw HTML omitted -->PC 端是不需要切换按钮的<!-- raw HTML omitted -->需求：屏幕宽度大于 500px，菜单图标隐藏，侧边栏显示<!-- raw HTML omitted --> 小于 500px，菜单图标显示，侧边栏隐藏，点击菜单栏侧边栏显示。再次点击隐藏。<!-- raw HTML omitted -->做法：</p>
+<ol>
+<li>获取当前屏幕宽度</li>
+<li>判断当前屏幕宽度，若&lt;500px，则置为 false（需要点击切换按钮，aside 才显示）</li>
+<li>若&gt;500px，则置为 true
+<blockquote>
+<p>sass 写 before after</p>
+</blockquote>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="nt">p</span> <span class="p">{</span>
+  <span class="err">&amp;:before</span> <span class="err">{</span>
+    <span class="k">content</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="o">&amp;</span><span class="p">:</span><span class="nd">after</span> <span class="p">{</span>
+    <span class="k">content</span><span class="p">:</span> <span class="s2">&#34;* * *&#34;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="err">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="路由切换">路由切换</h2>
+<ol>
+<li>设置/doc 路由之后的子路由</li>
+</ol>
+<p>这里把 router 相关代码放到一个单独的<code>router.ts</code>里，然后 export <code>router</code>这个变量。后面用到就<code>import</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">import</span> <span class="nx">Home</span> <span class="kr">from</span> <span class="s2">&#34;./views/Home.vue&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Doc</span> <span class="kr">from</span> <span class="s2">&#34;./views/Doc.vue&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">createWebHashHistory</span><span class="p">,</span> <span class="nx">createRouter</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;vue-router&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Switch</span> <span class="kr">from</span> <span class="s2">&#34;./components/Switch.vue&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="nx">createWebHashHistory</span><span class="p">();</span>
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">({</span>
+  <span class="nx">history</span>: <span class="kt">history</span><span class="p">,</span>
+  <span class="nx">routes</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="nx">component</span>: <span class="kt">Home</span> <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/doc&#34;</span><span class="p">,</span>
+      <span class="nx">component</span>: <span class="kt">Doc</span><span class="p">,</span>
+      <span class="nx">children</span><span class="o">:</span> <span class="p">[{</span> <span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;switch&#34;</span><span class="p">,</span> <span class="nx">component</span>: <span class="kt">Switch</span> <span class="p">}],</span>
+    <span class="p">},</span>
+  <span class="p">],</span>
+<span class="p">});</span>
+</code></pre></div><ol start="2">
+<li>设置 router-link 和 router-view</li>
+<li>创建<code>switch</code>组件<code>Switch.vue</code></li>
+<li>至此，实现点击跳转到 switch 组件</li>
+</ol>
+<p>但是，手机端需求：点击跳转的同时，侧边栏隐藏</p>
+<ol start="5">
+<li>做法：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="nx">router</span><span class="p">.</span><span class="nx">afterEach</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="nx">width</span> <span class="o">&lt;=</span> <span class="mi">500</span><span class="p">)</span> <span class="p">{</span> <span class="nx">menuVisible</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="p">}</span> <span class="p">})</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="基本布局">基本布局</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="2组件">2.组件</h1>
+<ul>
+<li>最好不要自己做视觉设计</li>
+<li>尽量抄别人的外观，东抄一点西抄一点</li>
+<li>参考<a href="https://ant.design/index-cn" target="_blank" rel="noopener noreffer">antD</a>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="switch-组件contextemit">switch 组件：context.emit</h2>
+<blockquote>
+<p>父子组件通信
+context.emit 与 vue2 的 this.$emit 相同
+vue3 父子组件通信简化方法：v-model</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/gif/22429169/1635748509652-795a8663-0a2b-4c70-9b11-dd164cd2701c.gif#clientId=u1e85ab56-e69b-4&amp;from=paste&amp;id=ua221fed8&amp;margin=%5Bobject%20Object%5D&amp;originHeight=297&amp;originWidth=413&amp;originalType=url&amp;ratio=1&amp;status=done&amp;style=none&amp;taskId=uab23e5cd-30e2-43b9-94b1-9c57dcb94e5"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/gif/22429169/1635748509652-795a8663-0a2b-4c70-9b11-dd164cd2701c.gif#clientId=u1e85ab56-e69b-4&amp;from=paste&amp;id=ua221fed8&amp;margin=%5Bobject%20Object%5D&amp;originHeight=297&amp;originWidth=413&amp;originalType=url&amp;ratio=1&amp;status=done&amp;style=none&amp;taskId=uab23e5cd-30e2-43b9-94b1-9c57dcb94e5, https://cdn.nlark.com/yuque/0/2021/gif/22429169/1635748509652-795a8663-0a2b-4c70-9b11-dd164cd2701c.gif#clientId=u1e85ab56-e69b-4&amp;from=paste&amp;id=ua221fed8&amp;margin=%5Bobject%20Object%5D&amp;originHeight=297&amp;originWidth=413&amp;originalType=url&amp;ratio=1&amp;status=done&amp;style=none&amp;taskId=uab23e5cd-30e2-43b9-94b1-9c57dcb94e5 1.5x, https://cdn.nlark.com/yuque/0/2021/gif/22429169/1635748509652-795a8663-0a2b-4c70-9b11-dd164cd2701c.gif#clientId=u1e85ab56-e69b-4&amp;from=paste&amp;id=ua221fed8&amp;margin=%5Bobject%20Object%5D&amp;originHeight=297&amp;originWidth=413&amp;originalType=url&amp;ratio=1&amp;status=done&amp;style=none&amp;taskId=uab23e5cd-30e2-43b9-94b1-9c57dcb94e5 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/gif/22429169/1635748509652-795a8663-0a2b-4c70-9b11-dd164cd2701c.gif#clientId=u1e85ab56-e69b-4&amp;from=paste&amp;id=ua221fed8&amp;margin=%5Bobject%20Object%5D&amp;originHeight=297&amp;originWidth=413&amp;originalType=url&amp;ratio=1&amp;status=done&amp;style=none&amp;taskId=uab23e5cd-30e2-43b9-94b1-9c57dcb94e5"
+        title="https://cdn.nlark.com/yuque/0/2021/gif/22429169/1635748509652-795a8663-0a2b-4c70-9b11-dd164cd2701c.gif#clientId=u1e85ab56-e69b-4&amp;from=paste&amp;id=ua221fed8&amp;margin=%5Bobject%20Object%5D&amp;originHeight=297&amp;originWidth=413&amp;originalType=url&amp;ratio=1&amp;status=done&amp;style=none&amp;taskId=uab23e5cd-30e2-43b9-94b1-9c57dcb94e5" />
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="css">CSS</h3>
+<ol>
+<li>hover 之后右滚 √</li>
+<li>点击之后右滚</li>
+</ol>
+<ul>
+<li>给 button 加初始状态 false</li>
+<li>给 button 添加点击事件，点击后状态切换</li>
+</ul>
+<ol start="3">
+<li><strong>优化：初始状态由用户定义（没写完）</strong>
+<blockquote>
+<p>组件的<code>value</code>：
+不仅可以表示初始状态，也可以表示更新后的状态
+要理解并学会使用 Vue3 的父子组件通信</p>
+</blockquote>
+</li>
+</ol>
+<p>需求：把用户点击按钮之后的状态显示在页面<!-- raw HTML omitted -->分析：</p>
+<ul>
+<li>给按钮组件设置初始状态，并添加 input 事件</li>
+<li>​<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="button-组件">button 组件</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="需求">需求：</h3>
+<ol>
+<li>可以有不同的等级（level）（主要按钮，默认按钮，次要按钮）</li>
+<li>可以是链接，可以是文字</li>
+<li>可以 click、focus、mouseover（鼠标悬浮）</li>
+<li>可以改变 size：大中小</li>
+<li>可以禁用（disabled）</li>
+<li>可以加载中（loading）
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ol>
+<h3 id="api-设计">API 设计</h3>
+<blockquote>
+<p>vue3 插槽 slots
+记住！插槽的内容是写在父组件的模板内，而插槽的出口是在子组件的模板内的。</p>
+</blockquote>
+<p>子组件 button 标签中写一个插槽占位<!-- raw HTML omitted -->父组件引用子组件，在 button 标签里写文本（这个文本就是插入到子组件的插槽中的）<!-- raw HTML omitted -->​<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="添加事件属性绑定">添加事件&amp;属性绑定</h3>
+<p>给组件添加 click、focus、mouseover 事件</p>
+<blockquote>
+<p>父组件 Button，子组件 ButtonD</p>
+</blockquote>
+<ul>
+<li>父组件引用子组件模板</li>
+<li>直接在引用的子组件模板上添加事件</li>
+<li>那么，这些添加的事件会直接绑定到子组件的根元素上</li>
+</ul>
+<p><!-- raw HTML omitted --><strong>注 1：如果只希望子组件内部某一元素（如 button 标签）绑定事件，看下面步骤：</strong></p>
+<ol>
+<li>在子组件中，将继承属性的值改为 false（这样事件不会绑定在子组件的任何一个元素上）</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="nx">inheritAttrs</span><span class="o">=</span><span class="kc">false</span>
+</code></pre></div><ol start="2">
+<li>将事件绑定在子组件的 button 标签上 <strong>（$attrs）</strong></li>
+</ol>
+<p><code>$attrs</code>是尤雨溪发明的，它默认包含了所有的属性，以对象的形式来展现这些属性。<!-- raw HTML omitted -->然后使用<code>v-bind=&quot;$attrs&quot;</code>来绑定（即<code>$attrs</code>这个对象上的所有属性都通过<code>v-bind</code>绑定到<code>button</code>标签上）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="nt">v-bind</span><span class="s">=&#34;$attrs&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">slot</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</code></pre></div><p><strong>注 2：如果</strong><code>**$attrs**</code><strong>的属性想分开绑定到不同的元素上：</strong></p>
+<ol>
+<li>使用<code>setup()</code>的<code>context</code>参数获取到<code>$attrs</code></li>
+<li><code>size</code>和其他属性<code>...rest</code>切割开，分别绑定到不同元素上
+<blockquote>
+<p>es6 剩余操作符 rest
+ES6 引入 rest 参数（形式为&hellip;变量名），用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数为形参，如上面例子中的 theArgs，是一个接收函数调用时指向实参的参数变量，rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中，rest 操作符将多余参数变为数组：</p>
+</blockquote>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vue" data-lang="vue"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="nt">:size</span><span class="s">=&#34;size&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="nt">v-bind</span><span class="s">=&#34;rest&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">slot</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;ts&#34;</span><span class="p">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">setup</span><span class="p">(</span><span class="nx">props</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="p">{</span> <span class="nx">size</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">attrs</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="nx">size</span><span class="p">,</span> <span class="nx">rest</span> <span class="p">};</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><blockquote>
+<p>props 和 $attrs 的区别
+​<!-- raw HTML omitted --></p>
+</blockquote>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="让-button-支持-theme-属性">让 button 支持 theme 属性</h3>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="dialog-组件">dialog 组件</h2>
+<p>对话框
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="需求-1">需求：</h3>
+<ol>
+<li>点击后弹出</li>
+<li>有遮罩层 overlay</li>
+<li>有 close 按钮</li>
+<li>有标题，有内容</li>
+<li>有 yes/no 按钮
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ol>
+<h3 id="api-设计-1">API 设计</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">DialogD</span> <span class="na">visible</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;标题&#34;</span> <span class="err">@</span><span class="na">yes</span><span class="o">=</span><span class="s">&#34;fn1&#34;</span> <span class="err">@</span><span class="na">no</span><span class="o">=</span><span class="s">&#34;fn2&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">DialogD</span><span class="p">&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="支持-visible-属性">支持 visible 属性</h3>
+<p><strong>思路：</strong></p>
+<ol>
+<li>子组件 props 中声明 visible 属性，默认值为 false</li>
+<li>父组件声明一个变量 x，（x 是要传给子组件的）</li>
+<li><strong>在父组件引入的子组件模板中，绑定 visible 属性，值是 x</strong></li>
+<li>子组件添加 v-if 指令，visible 为 true 就显示，false 就隐藏</li>
+<li>父组件添加 button 按钮，给 button 添加一个点击事件，用户点击则将 visible 的值取反
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ol>
+<h3 id="支持点击关闭">支持点击关闭</h3>
+<p>上面 visible 属性的值，在子组件中是不能改的，只能由父组件传过来。<!-- raw HTML omitted -->有 4 个地方需要实现点击关闭：<!-- raw HTML omitted --><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1636037304087-e7246a72-6486-48cf-a9d5-81117c43d556.png#clientId=u3171f1d6-a087-4&amp;from=paste&amp;height=347&amp;id=u7cb8dc4d&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=466&amp;originWidth=490&amp;originalType=binary&amp;ratio=1&amp;size=18745&amp;status=done&amp;style=none&amp;taskId=u0f780312-2b33-4131-a15b-1025f563125&amp;width=365"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1636037304087-e7246a72-6486-48cf-a9d5-81117c43d556.png#clientId=u3171f1d6-a087-4&amp;from=paste&amp;height=347&amp;id=u7cb8dc4d&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=466&amp;originWidth=490&amp;originalType=binary&amp;ratio=1&amp;size=18745&amp;status=done&amp;style=none&amp;taskId=u0f780312-2b33-4131-a15b-1025f563125&amp;width=365, https://cdn.nlark.com/yuque/0/2021/png/22429169/1636037304087-e7246a72-6486-48cf-a9d5-81117c43d556.png#clientId=u3171f1d6-a087-4&amp;from=paste&amp;height=347&amp;id=u7cb8dc4d&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=466&amp;originWidth=490&amp;originalType=binary&amp;ratio=1&amp;size=18745&amp;status=done&amp;style=none&amp;taskId=u0f780312-2b33-4131-a15b-1025f563125&amp;width=365 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1636037304087-e7246a72-6486-48cf-a9d5-81117c43d556.png#clientId=u3171f1d6-a087-4&amp;from=paste&amp;height=347&amp;id=u7cb8dc4d&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=466&amp;originWidth=490&amp;originalType=binary&amp;ratio=1&amp;size=18745&amp;status=done&amp;style=none&amp;taskId=u0f780312-2b33-4131-a15b-1025f563125&amp;width=365 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1636037304087-e7246a72-6486-48cf-a9d5-81117c43d556.png#clientId=u3171f1d6-a087-4&amp;from=paste&amp;height=347&amp;id=u7cb8dc4d&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=466&amp;originWidth=490&amp;originalType=binary&amp;ratio=1&amp;size=18745&amp;status=done&amp;style=none&amp;taskId=u0f780312-2b33-4131-a15b-1025f563125&amp;width=365"
+        title="image.png" /><!-- raw HTML omitted -->一. 点“×”关闭<!-- raw HTML omitted -->**思路：**不能改变子组件 props 的属性值，可以通过 setup()的第二个参数 context 结合父组件来实现</p>
+<ol>
+<li>子组件的“×”元素上添加 close 事件，然后使用 context.emit()触发事件</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">lang</span><span class="o">=</span><span class="s2">&#34;ts&#34;</span><span class="o">&gt;</span>
+<span class="kr">import</span> <span class="nx">ButtonD</span> <span class="nx">from</span> <span class="s2">&#34;./ButtonD.vue&#34;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">components</span><span class="o">:</span> <span class="p">{</span> <span class="nx">ButtonD</span> <span class="p">},</span>
+  <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">visible</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="nb">Boolean</span><span class="p">,</span>
+      <span class="k">default</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+  <span class="nx">setup</span><span class="p">(</span><span class="nx">props</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">close</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s2">&#34;update:visible&#34;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="nx">close</span> <span class="p">};</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+</code></pre></div><pre tabindex="0"><code>context.emit(&quot;事件名&quot;,事件参数)
+事件名默认写法：update:props里声明的属性名(即你要更新的属性)
+</code></pre><ol start="2">
+<li>在父组件引用的子组件模板中，监听用户事件并把更新的属性值传给子组件（使用 Vue3：v-model）</li>
+</ol>
+<pre tabindex="0"><code>&lt;DialogD v-model:visible=&quot;x&quot;&gt;&lt;/DialogD&gt;
+</code></pre><p>二. 点遮罩层关闭<!-- raw HTML omitted -->**需求：**可以给遮罩层元素添加与“×”按钮相同的 close 事件。**但是为了防止用户误点遮罩层，导致对话框关闭。**需要加一个属性：closeOnClickOverlay（类型为布尔，默认值为 true）<!-- raw HTML omitted -->​</p>
+<p>**思路：**添加一个 closeOnClickOverlay 属性。添加一个点击事件 onClickOverlay，如果属性值为 true，则调用 close()。<!-- raw HTML omitted -->​</p>
+<p>三 . 点击 OK，cancel 实现关闭<!-- raw HTML omitted --><strong>需求：点击 OK 时，需要判断内容是否为空，为空则不能关闭</strong><!-- raw HTML omitted --><strong>思路：</strong></p>
+<ul>
+<li>子组件定义 OK，cancel 属性</li>
+<li>子组件元素添加点击事件，分别绑定 OK，cancel 函数</li>
+<li>父组件给 OK，cancel 分别绑定 f1()，f2()函数</li>
+</ul>
+<p>​</p>
+<p>四. dialog 支持 title 和 content<!-- raw HTML omitted -->**思路：**使用插槽 slot<!-- raw HTML omitted -->具名插槽（给插槽一个名字）<!-- raw HTML omitted -->用法：</p>
+<ul>
+<li>子组件给插槽命名</li>
+<li>父组件用 template 标签包住，里面写 v-slot:插槽名</li>
+</ul>
+<p>五. 新组建 teleport<!-- raw HTML omitted -->由于 CSS 的层级上下文，可能 dialog 会被遮挡。<!-- raw HTML omitted -->**解决办法：**使用内置组件 teleport ，组件有个 to 属性，可以把组件内的元素移到 to 属性值的后面（即移出当前的层级上下文）<!-- raw HTML omitted -->六.一句话打开 dialog<!-- raw HTML omitted -->**思路：**给 show 按钮添加点击事件，并绑定一个 showDialog 函数，一旦点击，就执行 openDialog 函数<!-- raw HTML omitted -->openDialog 函数（动态挂载）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">import</span> <span class="nx">DialogD</span> <span class="kr">from</span> <span class="s2">&#34;../lib/DialogD.vue&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">createApp</span><span class="p">,</span> <span class="nx">h</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;vue&#34;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">openDialog</span> <span class="o">=</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">ok</span><span class="p">,</span> <span class="nx">cancel</span><span class="p">,</span> <span class="nx">closeOnClickOverlay</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">options</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">);</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">close</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">app</span><span class="p">.</span><span class="nx">unmount</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+    <span class="nx">div</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+  <span class="p">};</span>
+  <span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">({</span>
+    <span class="nx">render() {</span>
+      <span class="k">return</span> <span class="nx">h</span><span class="p">(</span>
+        <span class="nx">DialogD</span><span class="p">,</span>
+        <span class="p">{</span>
+          <span class="nx">visible</span>: <span class="kt">true</span><span class="p">,</span>
+          <span class="s2">&#34;onUpdate:visible&#34;</span><span class="o">:</span> <span class="p">(</span><span class="nx">newVisible</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">newVisible</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nx">close</span><span class="p">();</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="nx">ok</span><span class="p">,</span>
+          <span class="nx">cancel</span><span class="p">,</span>
+          <span class="nx">closeOnClickOverlay</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="p">{</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">content</span> <span class="p">}</span>
+      <span class="p">);</span>
+    <span class="p">},</span>
+  <span class="p">});</span>
+  <span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="tabs-组件">tabs 组件</h2>
+<p>这坨卡了很久 需要学习好多内容</p>
+<ul>
+<li>用 JS 获取插槽内容：const defaults = context.slots.default()</li>
+<li>钩子 onMounted / onUpdated / watchEffect</li>
+<li>TypeScript 泛型</li>
+<li>获取元素宽高和位置：const { width, left } = el.getBoundingClientRect()</li>
+<li>ES 6 析构赋值的重命名语法
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h3 id="需求-2">需求：</h3>
+<ul>
+<li>点击 tab 切换内容</li>
+<li>切换时横线动</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="api-设计-2">API 设计</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">Tabs</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">Tab</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;导航1&#34;</span><span class="p">&gt;</span>内容1<span class="p">&lt;/</span><span class="nt">Tab</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">Tab</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;导航2&#34;</span><span class="p">&gt;&lt;</span><span class="nt">Component1</span> <span class="p">/&gt;&lt;/</span><span class="nt">Tab</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">Tab</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;导航3&#34;</span><span class="p">&gt;&lt;</span><span class="nt">Component1</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;hi&#34;</span> <span class="p">/&gt;&lt;/</span><span class="nt">Tab</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">Tabs</span><span class="p">&gt;</span>
+或
+<span class="p">&lt;</span><span class="nt">Tabs</span>
+  <span class="na">:data</span><span class="o">=</span><span class="s">&#34;[
+</span><span class="s">  {title:&#39;导航1&#39;,content: &#39;内容1&#39;},
+</span><span class="s">  {title:&#39;导航2&#39;,content: Component1},
+</span><span class="s">  {title:&#39;导航3&#39;,content: h(Component1,{x:&#39;hi&#39;})},
+</span><span class="s">]&#34;</span>
+<span class="p">/&gt;</span>
+</code></pre></div><ol>
+<li><strong>如何在运行时检查子组件的类型（防御性编程）</strong></li>
+</ol>
+<p>如果开发者不是使用的 Tab 组件，那么就报一个错</p>
+<blockquote>
+<p>Vue 基本原理：组件写好被导出为一个对象，对象里面有 render()函数</p>
+</blockquote>
+<p>TabsD.vue</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    TabsD
+    <span class="p">&lt;</span><span class="nt">component</span> <span class="na">:is</span><span class="o">=</span><span class="s">&#34;defaults[0]&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">component</span> <span class="na">:is</span><span class="o">=</span><span class="s">&#34;defaults[1]&#34;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;ts&#34;</span><span class="p">&gt;</span>
+  <span class="kr">import</span> <span class="nx">TabD</span> <span class="nx">from</span> <span class="s2">&#34;./TabD.vue&#34;</span><span class="p">;</span>
+  <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">setup</span><span class="p">(</span><span class="nx">props</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">slots</span><span class="p">.</span><span class="k">default</span><span class="p">();</span>
+      <span class="nx">defaults</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">tag</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">tag</span><span class="p">.</span><span class="nx">type</span> <span class="o">!==</span> <span class="nx">TabD</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;TabsD 子标签必须是 TabD &#34;</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">defaults</span><span class="p">,</span>
+      <span class="p">};</span>
+    <span class="p">},</span>
+  <span class="p">};</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><ol start="2">
+<li><strong>如何渲染嵌套的组件</strong></li>
+<li><strong>切换标签页</strong></li>
+</ol>
+<p>用 selected 标记被选中的标签页</p>
+<ul>
+<li>selected 用 index 表示，不推荐</li>
+<li>selected 用 name 表示，不方便 （开发者可以控制 name 不一样，但用户用起来麻烦）</li>
+<li>selected 用 title 表示，有漏洞 ✔️ （无法控制用户输入的 title，有可能一样）</li>
+</ul>
+<p>设计就是妥协的艺术</p>
+<ol start="4">
+<li><strong>会动的横线</strong></li>
+</ol>
+<ul>
+<li>动态设置 div 的宽度</li>
+<li>动态设置 div 的位置</li>
+</ul>
+<p>横线宽度应该和<code>导航1</code>几个字的宽度相同（即跟 title 所在元素的宽度相同）</p>
+<blockquote>
+<p>ts 泛型语法：
+ref&lt;要传的参数&gt;</p>
+</blockquote>
+<p>ref 和 v-for 结合获取当前 for 出来的元素的宽度
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="3官网装修">3.官网装修</h1>
+<ol>
+<li>选个网站设计，取色</li>
+<li>渐变色工具：css gradient</li>
+<li>选中路由，vue 会自动添加一个标记（router-link-active 的 class）</li>
+<li>npm 或者 yarn 引入<a href="https://github.com/sindresorhus/github-markdown-css" target="_blank" rel="noopener noreffer">github 的样式</a></li>
+<li>自制 Vite（支持 markdown）</li>
+</ol></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/vue%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%8C%87%E4%BB%A4%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="prev" rel="prev" title="Vue之模板，指令与修饰符"><i class="fas fa-angle-left fa-fw"></i>Vue之模板，指令与修饰符</a>
+            <a href="/posts/react%E7%BB%84%E4%BB%B6/" class="next" rel="next" title="React 组件">React 组件<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

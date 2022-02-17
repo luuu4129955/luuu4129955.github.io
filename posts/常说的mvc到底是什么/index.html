@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>常说的MVC到底是什么？ - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="常说的MVC到底是什么？" />
+<meta property="og:description" content="1.设计模式 一段代码写得特别好，可以运用到很多场景。 那么代码的设计者就取个名字。这段代码就是一种设计模式。 举例：jQuery 中用到的适配器模" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/%E5%B8%B8%E8%AF%B4%E7%9A%84mvc%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T15:31:25+08:00" />
+<meta property="article:modified_time" content="2022-02-14T15:31:25+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="常说的MVC到底是什么？"/>
+<meta name="twitter:description" content="1.设计模式 一段代码写得特别好，可以运用到很多场景。 那么代码的设计者就取个名字。这段代码就是一种设计模式。 举例：jQuery 中用到的适配器模"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/%E5%B8%B8%E8%AF%B4%E7%9A%84mvc%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88/" /><link rel="prev" href="https://luuu4129955.github.io/posts/promise%E4%BD%BF%E7%94%A8/" /><link rel="next" href="https://luuu4129955.github.io/posts/webpack%E4%BD%BF%E7%94%A8/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "常说的MVC到底是什么？",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/%E5%B8%B8%E8%AF%B4%E7%9A%84mvc%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88\/"
+        },"genre": "posts","wordcount":  2078 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/%E5%B8%B8%E8%AF%B4%E7%9A%84mvc%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88\/","datePublished": "2022-02-14T15:31:25+08:00","dateModified": "2022-02-14T15:31:25+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">常说的MVC到底是什么？</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2078 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要有设计模式">为什么要有设计模式？</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1model">1.Model</a></li>
+    <li><a href="#2view">2.View</a></li>
+    <li><a href="#3controller">3.Controller</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1最小知识原则">1.最小知识原则</a></li>
+    <li><a href="#2视图渲染数据">2.视图=渲染数据</a></li>
+    <li><a href="#3以不变应万变">3.以不变应万变</a></li>
+    <li><a href="#4表驱动编程">4.表驱动编程</a></li>
+    <li><a href="#5事不过三类继承">5.事不过三（类、继承）</a></li>
+    <li><a href="#6eventbus-俯瞰全局">6.EventBus (俯瞰全局)</a>
+      <ul>
+        <li><a href="#常用-apis">常用 APIs</a></li>
+        <li><a href="#代码示例">代码示例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="1设计模式">1.设计模式</h1>
+<ul>
+<li>一段代码写得特别好，可以运用到很多场景。</li>
+<li>那么代码的设计者就取个名字。这段代码就是一种设计模式。</li>
+<li>举例：jQuery 中用到的适配器模式
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="为什么要有设计模式">为什么要有设计模式？</h2>
+<p><strong>Don&rsquo;t Repeat Yourself</strong></p>
+<ul>
+<li>**代码：**一段 3 行以上的代码，重复写了 2 遍。那么就应该重构他。</li>
+<li><strong>页面：<strong>一个相同的页面写了 10 个，就应该想一个</strong>万金油</strong>写法。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h1 id="2mvc-是一种设计模式">2.MVC 是一种设计模式</h1>
+<p><strong>MVC 是三个单词的首字母缩写，它们是 Model（数据模型）、View（视图）和 Controller（控制）。</strong></p>
+<ul>
+<li>
+<p>Model（数据模型）→：操作所有数据</p>
+</li>
+<li>
+<p>View（视图）→ 提供给用户的操作界面，是程序的外壳</p>
+</li>
+<li>
+<p>Controller（控制）→ 控制层：监听用户在视图层 V 的事件，再选取数据层 M 的 data 并操作它。</p>
+<pre><code> 也负责监听M层data的变化，并在V层更新。&lt;br /&gt;**这三层紧密相连，却又互相独立。每一层都无需管其他层内部的变化，只需要对外提供一个调用接口即可。**&lt;br /&gt;**这样一来，实现了代码之间的“解耦”。大大地方便了维护和升级。**&lt;br /&gt;MVC没有严格的定义，分别做什么也很随意，大概对就行。
+</code></pre>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</li>
+</ul>
+<h2 id="1model">1.Model</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//M:存放数据以及对数据的增删改查
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">Model</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">数据源</span> <span class="p">},</span>
+  <span class="nx">create</span><span class="o">:</span> <span class="p">{</span> <span class="nx">增加数据</span> <span class="p">},</span>
+  <span class="k">delete</span><span class="o">:</span> <span class="p">{</span> <span class="nx">删除数据</span> <span class="p">},</span>
+  <span class="nx">update</span><span class="o">:</span> <span class="p">{</span> <span class="nx">更新数据</span> <span class="p">},</span>
+  <span class="nx">get</span><span class="o">:</span> <span class="p">{</span> <span class="nx">获取数据</span> <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="2view">2.View</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//示例
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">View</span><span class="o">=</span><span class="p">{</span>
+    <span class="nx">el</span><span class="o">:</span><span class="nx">要刷新的元素</span><span class="err">，</span>
+    <span class="nx">html</span><span class="err">：</span><span class="s1">&#39;要显示在页面上的刷新内容&#39;</span>
+    <span class="nx">init</span><span class="p">(){</span>
+        <span class="nx">View</span><span class="p">.</span><span class="nx">el</span><span class="o">:</span><span class="nx">初始化需要刷新的元素</span>
+    <span class="p">},</span>
+    <span class="nx">render</span><span class="p">(){</span> <span class="nx">刷新页面</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="3controller">3.Controller</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">c</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">init</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{})</span>
+    <span class="p">},</span>
+    <span class="nx">events</span><span class="o">:</span> <span class="p">{</span> <span class="nx">事件</span><span class="p">},</span>
+    <span class="nx">add</span><span class="p">()</span> <span class="p">{</span><span class="nx">获取m层数据</span><span class="err">，</span><span class="nx">并操作</span><span class="p">(</span><span class="nx">加法</span><span class="p">)},</span>
+    <span class="nx">minus</span><span class="p">()</span> <span class="p">{</span><span class="nx">获取m层数据</span><span class="err">，</span><span class="nx">并操作</span><span class="p">(</span><span class="nx">减法</span><span class="p">)},</span>
+    <span class="nx">mul</span><span class="p">()</span> <span class="p">{</span><span class="nx">获取m层数据</span><span class="err">，</span><span class="nx">并操作</span><span class="p">(</span><span class="nx">乘法</span><span class="p">)},</span>
+    <span class="nx">div</span><span class="p">()</span> <span class="p">{</span><span class="nx">获取m层数据</span><span class="err">，</span><span class="nx">并操作</span><span class="p">(</span><span class="nx">除法</span><span class="p">)},</span>
+    <span class="nx">autoBindEvents</span><span class="p">()</span> <span class="p">{</span><span class="nx">自动绑定事件方法</span><span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="3抽象思维模式">3.抽象思维模式</h1>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="1最小知识原则">1.最小知识原则</h2>
+<ul>
+<li>引入一个模块需要引入 html,css,js</li>
+<li>引入一个模块需要引入 html,js</li>
+<li>引入一个模块只需要引入 js</li>
+<li>永远不关心每个模块内部做了什么</li>
+</ul>
+<p><strong>做法：</strong></p>
+<ol>
+<li><strong>引入 CSS</strong><code>app1.css</code>里写好样式，<code>app1.js</code>里使用<code>import './app1.css'</code>引入<code>css</code></li>
+<li><strong>引入 HTML</strong><code>app1.js</code>里声明一个常量，把<code>html</code>作为字符串复制给这个常量。然后把这个节点插入到页面中。</li>
+<li>**引入 JS **把全局样式<code>global.css</code>，<code>reset.css</code>，<code>app1.js</code>放到<code>main.js</code>中，<code>index.html</code>只需要引入这个<code>main.js</code>就行。无需再管内部的 html 和 css 样式了。</li>
+</ol>
+<p><strong>代价：</strong><!-- raw HTML omitted -->这样做，会让<code>index.html</code>一开始是空白的，即没内容也没样式（因为需要等待<code>main.js</code>导入）<!-- raw HTML omitted --><strong>解决办法：</strong></p>
+<ul>
+<li>首页中加菊花（一个 loading 的 gif，在 js 的最后 remove 掉）</li>
+<li>首页中加骨架（能大概显示页面的结构，相当于另一种好看的“菊花”）</li>
+<li>首页中加占位内容（先放一个标题占位）
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="2视图渲染数据">2.视图=渲染数据</h2>
+<p>公式：<code>view=render(data)</code><!-- raw HTML omitted --><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634451465884-60733d40-9895-4ddc-be6d-4c118fd6fa5b.png#clientId=u690a6d13-01b7-4&amp;from=paste&amp;height=462&amp;id=u63b1ae36&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=595&amp;originWidth=607&amp;originalType=binary&amp;ratio=1&amp;size=486258&amp;status=done&amp;style=none&amp;taskId=u15c3cf80-087c-46bf-9428-3148de9fd42&amp;width=471.5"
+        data-srcset="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634451465884-60733d40-9895-4ddc-be6d-4c118fd6fa5b.png#clientId=u690a6d13-01b7-4&amp;from=paste&amp;height=462&amp;id=u63b1ae36&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=595&amp;originWidth=607&amp;originalType=binary&amp;ratio=1&amp;size=486258&amp;status=done&amp;style=none&amp;taskId=u15c3cf80-087c-46bf-9428-3148de9fd42&amp;width=471.5, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634451465884-60733d40-9895-4ddc-be6d-4c118fd6fa5b.png#clientId=u690a6d13-01b7-4&amp;from=paste&amp;height=462&amp;id=u63b1ae36&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=595&amp;originWidth=607&amp;originalType=binary&amp;ratio=1&amp;size=486258&amp;status=done&amp;style=none&amp;taskId=u15c3cf80-087c-46bf-9428-3148de9fd42&amp;width=471.5 1.5x, https://cdn.nlark.com/yuque/0/2021/png/22429169/1634451465884-60733d40-9895-4ddc-be6d-4c118fd6fa5b.png#clientId=u690a6d13-01b7-4&amp;from=paste&amp;height=462&amp;id=u63b1ae36&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=595&amp;originWidth=607&amp;originalType=binary&amp;ratio=1&amp;size=486258&amp;status=done&amp;style=none&amp;taskId=u15c3cf80-087c-46bf-9428-3148de9fd42&amp;width=471.5 2x"
+        data-sizes="auto"
+        alt="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634451465884-60733d40-9895-4ddc-be6d-4c118fd6fa5b.png#clientId=u690a6d13-01b7-4&amp;from=paste&amp;height=462&amp;id=u63b1ae36&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=595&amp;originWidth=607&amp;originalType=binary&amp;ratio=1&amp;size=486258&amp;status=done&amp;style=none&amp;taskId=u15c3cf80-087c-46bf-9428-3148de9fd42&amp;width=471.5"
+        title="image.png" /><!-- raw HTML omitted --><strong>代价：</strong></p>
+<ul>
+<li><code>render()</code>粗暴的渲染比直接操作 DOM 更浪费性能</li>
+</ul>
+<p><strong>解决办法：</strong></p>
+<ul>
+<li>后面会用到<code>虚拟DOM</code></li>
+<li><code>虚拟DOM</code>会让<code>render()</code>只更新该更新的地方
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="3以不变应万变">3.以不变应万变</h2>
+<p>每个模块都可以用 M+V+C 实现<!-- raw HTML omitted --><strong>代价：</strong></p>
+<ul>
+<li>有时会有一些多余的用不到的代码（不过需求复杂时就不会有这个问题）</li>
+<li>有时遇到特殊情况不知道怎么变通：比如没有 html 的模块如何用 MVC
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="4表驱动编程">4.表驱动编程</h2>
+<p>简单来说，就是用查表的方法获取值。</p>
+<ul>
+<li>当看到很多类似但不完全重复的代码</li>
+<li>找到其中的重要数据</li>
+<li>把重要的数据做成哈希表（数据结构）</li>
+<li>让代码的复杂度是恒定的，易于代码的维护</li>
+<li>不再用大量的<code>if...else...</code>或<code>switch...case...</code>来编程</li>
+<li>没有代价</li>
+</ul>
+<p><strong>举例：事件绑定函数</strong></p>
+<ol>
+<li>原本代码：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//给这5个按钮分别添加一个点击事件
+</span><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#btnPause&#34;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">pause</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#btnPlay&#34;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">play</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#btnSlow&#34;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">slow</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#btnNormal&#34;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">normal</span><span class="p">;</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;#btnFast&#34;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">fast</span><span class="p">;</span>
+</code></pre></div><ol start="2">
+<li>观察每一行代码，有哪些数据是在变化的，放到一个哈希表里：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">events</span><span class="o">:</span><span class="p">{</span>
+    <span class="s1">&#39;#btnPause&#39;</span><span class="o">:</span><span class="s1">&#39;pause&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;#btnPlay&#39;</span><span class="o">:</span><span class="s1">&#39;play&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;#btnSlow&#39;</span><span class="o">:</span><span class="s1">&#39;slow&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;#btnNormal&#39;</span><span class="o">:</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;#btnFast&#39;</span><span class="o">:</span><span class="s1">&#39;fast&#39;</span>
+<span class="p">}</span>
+</code></pre></div><ol start="3">
+<li>遍历哈希表，实现事件绑定函数：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">bindEvents</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">events</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">events</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span> <span class="c1">//pause,play,slow
+</span><span class="c1"></span>      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="nx">key</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">player</span><span class="p">[</span><span class="nx">value</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="5事不过三类继承">5.事不过三（类、继承）</h2>
+<ul>
+<li>同样的代码写 3 遍，就应该抽成一个函数</li>
+<li>同样的属性写 3 遍，就应该写成一个共有属性（原型或类）</li>
+<li>同样的原型写 3 遍，就应该用继承</li>
+</ul>
+<p><strong>代价：</strong></p>
+<ul>
+<li>有时会造成继承层级太深，无法一下子看懂代码</li>
+</ul>
+<p><strong>解决办法：</strong></p>
+<ul>
+<li>可以通过写文档，画类图解决
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="6eventbus-俯瞰全局">6.EventBus (俯瞰全局)</h2>
+<ul>
+<li>一个点和一个点怎么通信</li>
+<li>一个点和多个点怎么通信</li>
+<li>多个点和多个点怎么通信</li>
+<li>最终找出一个专用的点负责通信</li>
+<li>这个点就是<strong>eventBus（事件总线）</strong>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h3 id="常用-apis">常用 APIs</h3>
+<ul>
+<li><code>eventBus.on()</code>用于监听对象。</li>
+<li><code>eventBus.trigger()</code>用于触发对象。</li>
+<li><code>eventBus.off()</code>用于取消对象监听。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h3 id="代码示例">代码示例</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">m</span><span class="o">=</span><span class="p">{</span>
+	<span class="nx">update</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+  	<span class="nx">eventBus</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;m:updated&#39;</span><span class="p">)</span><span class="c1">//m层更新数据，通知v层更新页面
+</span><span class="c1"></span>  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">v</span><span class="o">=</span><span class="p">{</span>
+	<span class="nx">eventBus</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;m:updated&#39;</span><span class="p">,()=&gt;{</span>
+  	<span class="nx">render</span><span class="p">()</span><span class="c1">//v层监听到m层更新，就更新页面
+</span><span class="c1"></span>  <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="4js-模块化">4.JS 模块化</h1>
+<p>JavaScript 模块依赖于<code>import</code>和 <code>export</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">export</span> <span class="k">default</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">//默认导出x变量给外部使用（每个模块只允许一个默认导出），注意不要花括号
+</span><span class="c1"></span>
+<span class="kr">import</span> <span class="nx">x</span> <span class="nx">from</span> <span class="s2">&#34;./xxx.js&#34;</span><span class="p">;</span> <span class="c1">//默认导入外部的x变量
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="k">default</span> <span class="nx">as</span> <span class="nx">x</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;./xxx.js&#34;</span><span class="p">;</span> <span class="c1">//等价于上一行的写法
+</span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">export</span> <span class="p">{</span> <span class="nx">x</span> <span class="p">};</span> <span class="c1">//加花括号
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">x</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;./xxx.js&#34;</span><span class="p">;</span> <span class="c1">//导入外部变量
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="4总结">4.总结</h1>
+<p>MVC 概念比较抽象，根据具体的项目需求，M，V，C 三者指代的内容也有所差异。<!-- raw HTML omitted -->以后在做项目时，可以刻意去使用 MVC，让自己加深理解。</p>
+<hr>
+<p>扩展阅读：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Modules" target="_blank" rel="noopener noreffer">JavaScript 模块化 MDN</a></li>
+<li><a href="https://www.ruanyifeng.com/blog/2007/11/mvc.html" target="_blank" rel="noopener noreffer">谈谈 MVC 模式 阮一峰</a></li>
+<li><a href="https://efe.baidu.com/blog/mvc-deformation/" target="_blank" rel="noopener noreffer">前端 MVC 变形记</a></li>
+<li><a href="https://cchroot.github.io/2020/05/23/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95/" target="_blank" rel="noopener noreffer">表驱动法</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/promise%E4%BD%BF%E7%94%A8/" class="prev" rel="prev" title="Promise使用"><i class="fas fa-angle-left fa-fw"></i>Promise使用</a>
+            <a href="/posts/webpack%E4%BD%BF%E7%94%A8/" class="next" rel="next" title="Webpack使用">Webpack使用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

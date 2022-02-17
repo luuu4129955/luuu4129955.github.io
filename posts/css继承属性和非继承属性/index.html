@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>CSS继承属性和非继承属性 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="CSS继承属性和非继承属性" />
+<meta property="og:description" content="本文总结了 CSS 的继承属性和非继承属性 1.无继承的属性 display：规定元素应该生成的框的类型； 文本属性： vertical-align：垂直文" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/css%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E5%92%8C%E9%9D%9E%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-31T14:35:33+08:00" />
+<meta property="article:modified_time" content="2021-07-31T14:35:33+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CSS继承属性和非继承属性"/>
+<meta name="twitter:description" content="本文总结了 CSS 的继承属性和非继承属性 1.无继承的属性 display：规定元素应该生成的框的类型； 文本属性： vertical-align：垂直文"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/css%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E5%92%8C%E9%9D%9E%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7/" /><link rel="prev" href="https://luuu4129955.github.io/posts/hugo&#43;github%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" /><link rel="next" href="https://luuu4129955.github.io/posts/%E5%85%B3%E4%BA%8Ehttp/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CSS继承属性和非继承属性",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/css%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E5%92%8C%E9%9D%9E%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7\/"
+        },"genre": "posts","wordcount":  1983 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/css%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E5%92%8C%E9%9D%9E%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7\/","datePublished": "2021-07-31T14:35:33+08:00","dateModified": "2021-07-31T14:35:33+08:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">CSS继承属性和非继承属性</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-31">2021-07-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1983 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1无继承的属性">1.无继承的属性</a></li>
+    <li><a href="#2有继承性的属性">2.有继承性的属性</a></li>
+    <li><a href="#3所有元素可以继承的属性">3.所有元素可以继承的属性</a></li>
+    <li><a href="#4内联元素可以继承的属性">4.内联元素可以继承的属性</a></li>
+    <li><a href="#5块级元素可以继承的属性">5.块级元素可以继承的属性</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>本文总结了 CSS 的继承属性和非继承属性</p>
+<h2 id="1无继承的属性">1.无继承的属性</h2>
+<ol>
+<li>
+<p><code>display</code>：规定元素应该生成的框的类型；</p>
+</li>
+<li>
+<p>文本属性：</p>
+<p><code>vertical-align</code>：垂直文本对齐</p>
+<p><code>text-decoration</code>：规定添加到文本的装饰</p>
+<p><code>text-shadow</code>：文本阴影效果</p>
+<p><code>white-space</code>：空白符的处理</p>
+<p><code>unicode-bidi</code>：设置文本的方向</p>
+</li>
+<li>
+<p>盒子模型的属性：</p>
+<p><code>width</code>、<code>height</code>、<code>margin</code> 、<code>margin-top</code>、<code>margin-right</code>、<code>margin-bottom</code>、<code>margin-left</code>、<code>border</code>、<code>border-style</code>、<code>border-top-style</code>、<code>border-right-style</code>、<code>border-bottom-style</code>、<code>border-left-style</code>、<code>border-width</code>、<code>border-top-width</code>、<code>border-right-right</code>、<code>border-bottom-width</code>、<code>border-left-width</code>、<code>border-color</code>、<code>border-top-color</code>、<code>border-right-color</code>、<code>border-bottom-color</code>、<code>border-left-color</code>、<code>border-top</code>、<code>border-right</code>、<code>border-bottom</code>、<code>border-left</code>、<code>padding</code>、<code>padding-top</code>、<code>padding-right</code>、<code>padding-bottom</code>、<code>padding-left</code></p>
+</li>
+<li>
+<p>背景属性：</p>
+<p><code>background</code>、<code>background-color</code>、<code>background-image</code>、<code>background-repeat</code>、<code>background-position</code>、<code>background-attachment</code></p>
+</li>
+<li>
+<p>定位属性：</p>
+<p><code>float</code>、<code>clear</code>、<code>position</code>、<code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code>、<code>min-width</code>、<code>min-height</code>、<code>max-width</code>、<code>max-height</code>、<code>overflow</code>、<code>clip</code>、<code>z-index</code></p>
+</li>
+<li>
+<p>生成内容属性：<code>content</code>、<code>counter-reset</code>、<code>counter-increment</code></p>
+</li>
+<li>
+<p>轮廓样式属性：<code>outline-style</code>、<code>outline-width</code>、<code>outline-color</code>、<code>outline</code></p>
+</li>
+<li>
+<p>页面样式属性：<code>size</code>、<code>page-break-before</code>、<code>page-break-after</code></p>
+</li>
+<li>
+<p>声音样式属性：<code>pause-before</code>、<code>pause-after</code>、<code>pause</code>、<code>cue-before</code>、<code>cue-after</code>、<code>cue</code>、<code>play-during</code></p>
+</li>
+</ol>
+<h2 id="2有继承性的属性">2.有继承性的属性</h2>
+<ol>
+<li>
+<p>字体系列属性</p>
+<p><code>font</code>：组合字体</p>
+<p><code>font-family</code>：规定元素的字体系列</p>
+<p><code>font-weight</code>：设置字体的粗细</p>
+<p><code>font-size</code>：设置字体的尺寸</p>
+<p><code>font-style</code>：定义字体的风格</p>
+<p><code>font-variant</code>：设置小型大写字母的字体显示文本，这意味着所有的小写字母均会被转换为大写，但是所有使用小型大写字体的字母与其余文本相比，其字体尺寸更小。</p>
+<p><code>font-stretch</code>：对当前的 <code>font-family</code> 进行伸缩变形。所有主流浏览器都不支持。</p>
+<p><code>font-size-adjust</code>：为某个元素规定一个 <code>aspect</code> 值，这样就可以保持首选字体的 <code>x-height</code>。</p>
+</li>
+<li>
+<p>文本系列属性</p>
+<p><code>text-indent</code>：文本缩进</p>
+<p><code>text-align</code>：文本水平对齐</p>
+<p><code>line-height</code>：行高</p>
+<p><code>word-spacing</code>：增加或减少单词间的空白（即字间隔）</p>
+<p><code>letter-spacing</code>：增加或减少字符间的空白（字符间距）</p>
+<p><code>text-transform</code>：控制文本大小写</p>
+<p><code>direction</code>：规定文本的书写方向</p>
+<p><code>color</code>：文本颜色</p>
+</li>
+<li>
+<p>元素可见性：<code>visibility</code></p>
+</li>
+<li>
+<p>表格布局属性：<code>caption-side</code>、<code>border-collapse</code>、<code>border-spacing</code>、<code>empty-cells</code>、<code>table-layout</code></p>
+</li>
+<li>
+<p>列表布局属性：<code>list-style-type</code>、<code>list-style-image</code>、<code>list-style-position</code>、<code>list-style</code></p>
+</li>
+<li>
+<p>生成内容属性：<code>quotes</code></p>
+</li>
+<li>
+<p>光标属性：<code>cursor</code></p>
+</li>
+<li>
+<p>页面样式属性：<code>page</code>、<code>page-break-inside</code>、<code>windows</code>、<code>orphans</code></p>
+</li>
+<li>
+<p>声音样式属性：</p>
+<p><code>speak</code>、<code>speak-punctuation</code>、<code>speak-numeral</code>、<code>speak-header</code>、<code>speech-rate</code>、<code>volume</code>、<code>voice-family</code>、<code>pitch</code>、<code>pitch-range</code>、<code>stress</code>、<code>richness</code>、<code>azimuth</code>、<code>elevation</code></p>
+</li>
+</ol>
+<h2 id="3所有元素可以继承的属性">3.所有元素可以继承的属性</h2>
+<ol>
+<li>
+<p>元素可见性：<code>visibility</code></p>
+</li>
+<li>
+<p>光标属性：<code>cursor</code></p>
+</li>
+</ol>
+<h2 id="4内联元素可以继承的属性">4.内联元素可以继承的属性</h2>
+<ol>
+<li>
+<p>字体系列属性</p>
+</li>
+<li>
+<p>除 <code>text-indent</code>、<code>text-align</code> 之外的文本系列属性</p>
+</li>
+</ol>
+<h2 id="5块级元素可以继承的属性">5.块级元素可以继承的属性</h2>
+<p><code>text-indent</code>、<code>text-align</code></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-07-31</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/hugo&#43;github%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="prev" rel="prev" title="hugo&#43;GitHub创建个人博客"><i class="fas fa-angle-left fa-fw"></i>hugo&#43;GitHub创建个人博客</a>
+            <a href="/posts/%E5%85%B3%E4%BA%8Ehttp/" class="next" rel="next" title="关于HTTP">关于HTTP<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
