@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>搞清楚浅拷贝和深拷贝 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="搞清楚浅拷贝和深拷贝" />
+<meta property="og:description" content="理清楚浅拷贝和深拷贝的概念，并总结如何实现一个深拷贝。
+参考博客" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%B7%B1%E6%8B%B7%E8%B4%9D/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T15:27:43+08:00" />
+<meta property="article:modified_time" content="2022-02-14T15:27:43+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="搞清楚浅拷贝和深拷贝"/>
+<meta name="twitter:description" content="理清楚浅拷贝和深拷贝的概念，并总结如何实现一个深拷贝。
+参考博客"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%B7%B1%E6%8B%B7%E8%B4%9D/" /><link rel="prev" href="https://luuu4129955.github.io/posts/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" /><link rel="next" href="https://luuu4129955.github.io/posts/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "搞清楚浅拷贝和深拷贝",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%B7%B1%E6%8B%B7%E8%B4%9D\/"
+        },"genre": "posts","keywords": "es6","wordcount":  1601 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%B7%B1%E6%8B%B7%E8%B4%9D\/","datePublished": "2022-02-14T15:27:43+08:00","dateModified": "2022-02-14T15:27:43+08:00","publisher": {
+            "@type": "Organization",
+            "name": "可喜"},"author": {
+                "@type": "Person",
+                "name": "可喜"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">😉可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">😉可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">搞清楚浅拷贝和深拷贝</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>可喜</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1601 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#浅拷贝举例">浅拷贝举例</a>
+      <ul>
+        <li><a href="#objectassign-es6">Object.assign() ES6</a></li>
+        <li><a href="#展开运算符">展开运算符</a></li>
+        <li><a href="#arrayprototypeslice">Array.prototype.slice()</a></li>
+        <li><a href="#arrayprototypeconcat">Array.prototype.concat()</a></li>
+      </ul>
+    </li>
+    <li><a href="#浅拷贝实现">浅拷贝实现</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#递归判断类型">递归判断类型</a></li>
+    <li><a href="#检查环">检查环</a></li>
+    <li><a href="#深拷贝实现">深拷贝实现</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>理清楚浅拷贝和深拷贝的概念，并总结如何实现一个深拷贝。
+<a href="https://juejin.cn/post/6896637675492065287" target="_blank" rel="noopener noreffer">参考博客</a></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="浅拷贝和深拷贝">浅拷贝和深拷贝</h1>
+<blockquote>
+<p>对于基本数据类型，用<code>=</code>赋值就实现了一次拷贝
+对于引用数据类型，分为浅拷贝和深拷贝。
+<strong>浅拷贝</strong>是赋址，数据的内存地址是存在栈里的。只会拷贝第一层数据里的属性和值。如果里面还嵌套有引用数据，则只会复制其地址。
+而<strong>深拷贝</strong>，是完完全全地把一个引用数据全部内容复制一遍，并开辟新的内存 存放。对原数据或新数据操作，都只会影响自身。</p>
+</blockquote>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="如何实现浅拷贝">如何实现浅拷贝</h1>
+<p>对于基本数据类型，只有<strong>赋值，是不存在深浅拷贝这个概念的。</strong>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="浅拷贝举例">浅拷贝举例</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="objectassign-es6">Object.assign() ES6</h3>
+<p><code>assign</code>译为分配。该API就是给目标对象分配新属性的。会返回目标对象<!-- raw HTML omitted --><strong>作用：</strong></p>
+<ul>
+<li>给目标对象添加新属性</li>
+<li>目标对象为空，相对于浅拷贝了一份源对象。</li>
+<li>合并多个对象。属性 相同的情况下，后来的覆盖前面的</li>
+</ul>
+<p><strong>记几个例子加深印象：</strong></p>
+<ol>
+<li><strong>​</strong><!-- raw HTML omitted --></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//浅拷贝了obj1
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">0</span> <span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="p">{</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">0</span><span class="p">}};</span>
+<span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">obj1</span><span class="p">);</span>
+
+<span class="c1">//改变其中一个对象的基本数据类型，另一个对象是不受影响的
+</span><span class="c1"></span><span class="nx">obj1</span><span class="p">.</span><span class="nx">a</span><span class="o">=</span><span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj1</span><span class="p">)</span><span class="c1">//{ a: 1 , b: { c: 0}}
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj2</span><span class="p">)</span><span class="c1">//{ a: 0 , b: { c: 0}}
+</span><span class="c1"></span>
+<span class="nx">obj2</span><span class="p">.</span><span class="nx">a</span><span class="o">=</span><span class="mi">2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj1</span><span class="p">)</span><span class="c1">//{ a: 1 , b: { c: 0}}
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj2</span><span class="p">)</span><span class="c1">//{ a: 2 , b: { c: 0}}
+</span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//先打印出上面的，否则属性b引用的对象c的值一旦改变，上面的c也都会变成3
+</span><span class="c1"></span><span class="nx">obj1</span><span class="p">.</span><span class="nx">b</span><span class="p">.</span><span class="nx">c</span><span class="o">=</span><span class="mi">3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj1</span><span class="p">)</span><span class="c1">//{ a: 1 , b: { c: 3}}
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj2</span><span class="p">)</span><span class="c1">//{ a: 0 , b: { c: 3}}
+</span><span class="c1"></span>
+</code></pre></div><ol start="2">
+<li><strong>​</strong><!-- raw HTML omitted --></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//合并对象时，属性 相同的情况下，后来的覆盖前面的
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">o1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">1</span> <span class="p">};</span>
+<span class="kr">const</span> <span class="nx">o2</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">2</span> <span class="p">};</span>
+<span class="kr">const</span> <span class="nx">o3</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span> <span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">o1</span><span class="p">,</span> <span class="nx">o2</span><span class="p">,</span> <span class="nx">o3</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span> <span class="c1">// { a: 1, b: 2, c: 3 }
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="展开运算符">展开运算符</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">b</span><span class="o">:</span> <span class="p">{</span><span class="nx">c</span><span class="o">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{...</span><span class="nx">obj1</span><span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj2</span><span class="p">);</span>  <span class="c1">// {a: 1, b: {c: 2}}
+</span><span class="c1"></span>
+<span class="nx">obj1</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="nx">obj1</span><span class="p">.</span><span class="nx">b</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj1</span><span class="p">);</span> <span class="c1">// {a: 3, b: {c: 4}}
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj2</span><span class="p">);</span> <span class="c1">// {a: 1, b: {c: 4}}
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="arrayprototypeslice">Array.prototype.slice()</h3>
+<p><code>begin</code>为0，就相当于对原数组的一次浅拷贝</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr1</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,{</span><span class="nx">a</span><span class="o">:</span><span class="mi">2</span><span class="p">}]</span>
+<span class="kd">let</span> <span class="nx">arr2</span><span class="o">=</span><span class="nx">arr1</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nx">arr2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="c1">//arr1[0]=0,arr2[0]=1
+</span><span class="c1"></span>
+<span class="c1">//被引用的对象发生改变，则新的和原来的数组中的这个元素也会发生改变。
+</span><span class="c1"></span><span class="nx">arr2</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">a</span><span class="o">=</span><span class="mi">3</span><span class="c1">//arr2[2].a=3,arr1[2].a=3
+</span><span class="c1"></span>
+<span class="c1">//如果向两个数组任一中添加了新元素，则另一个不会受到影响。
+</span><span class="c1"></span><span class="nx">arr1</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="c1">//arr1.length=4,arr2.length=3
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="arrayprototypeconcat">Array.prototype.concat()</h3>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="浅拷贝实现">浅拷贝实现</h2>
+<p>遍历对象属性，并把属性和属性值放到新对象中</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">shallowClone</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
+  <span class="c1">//只拷贝对象
+</span><span class="c1"></span>	<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">obj</span> <span class="o">!==</span><span class="s1">&#39;object&#39;</span><span class="p">)</span><span class="k">return</span>
+  <span class="kd">let</span> <span class="nx">newObj</span><span class="o">=</span><span class="nx">obj</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="o">?</span><span class="p">[]</span><span class="o">:</span><span class="p">{}</span>
+  
+  <span class="c1">//拷贝可枚举属性
+</span><span class="c1"></span>  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">)){</span>
+    	<span class="nx">newObj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="o">=</span><span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">newObj</span>
+<span class="p">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="如何实现深拷贝">如何实现深拷贝</h1>
+<blockquote>
+<p>先把引用类型字符串化为基础类型，如何再对象化这个字符串。再赋值
+就实现了对引用类型的深拷贝</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">b</span><span class="o">:</span> <span class="p">{</span><span class="nx">c</span><span class="o">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">obj2</span><span class="o">=</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj1</span><span class="p">))</span>
+
+<span class="c1">//改变引用类型的属性值，另一个不受影响
+</span><span class="c1"></span><span class="nx">obj2</span><span class="p">.</span><span class="nx">b</span><span class="p">.</span><span class="nx">c</span><span class="o">=</span><span class="mi">3</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj1</span><span class="p">)</span><span class="c1">//{a:1,b:{c:2}}
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj2</span><span class="p">)</span><span class="c1">//{a:1,b:{c:3}}
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="递归判断类型">递归判断类型</h2>
+<p>但是如果对象内部类型较为复杂时，就会有问题</p>
+<blockquote>
+<p>JSON.stringify具有以下特性：</p>
+<ol>
+<li>里面有函数，undefined，则序列化的结果会把函数置为undefined或丢失；</li>
+<li>里面有RegExp、Error对象，则序列化的结果将只得到空对象；</li>
+<li>里面有NaN、Infinity和-Infinity，则序列化的结果会变成null</li>
+</ol>
+</blockquote>
+<p><strong>因此需要通过递进一层层地判断类型，直到最深层是基础类型，再回归。</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"> <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;muyiy&#39;</span><span class="p">,</span>
+    <span class="nx">a</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
+    <span class="nx">b</span><span class="o">:</span> <span class="nx">Symbol</span><span class="p">(</span><span class="s1">&#39;muyiy&#39;</span><span class="p">),</span>
+    <span class="nx">c</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>  <span class="c1">// { name: &#34;muyiy&#34;, a: undefined, b: Symbol(muyiy), c: ƒ () }
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>  <span class="c1">// {name: &#34;muyiy&#34;}
+</span><span class="c1"></span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="检查环">检查环</h2>
+<blockquote>
+<p>对象的属性间接或直接的引用了自身，就是<strong>循环引用</strong></p>
+</blockquote>
+<p><strong>如果存在循环引用，递归就会进入死循环，爆栈！</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">b</span><span class="o">:</span> <span class="p">{</span><span class="nx">c</span><span class="o">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">obj1</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">obj1</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+<span class="nx">obj1</span><span class="p">.</span><span class="nx">b</span><span class="p">.</span><span class="nx">c</span><span class="o">=</span><span class="nx">obj1</span><span class="p">.</span><span class="nx">a</span>
+
+<span class="kd">let</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">obj1</span><span class="p">));</span> 
+<span class="c1">// Uncaught TypeError: Converting circular structure to JSON
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="深拷贝实现">深拷贝实现</h2>
+<blockquote>
+<p><strong>typeof</strong></p>
+<ul>
+<li>检查参数是什么数据类型</li>
+<li>ES5之后。如果某个变量使用let，const 声明（有块级作用域）。那么在声明前先用typeof检查就会报引用错误</li>
+<li>返回一个字符串，表示未经计算的操作数的类型。</li>
+<li>特例1：<code>typeof null='object'</code>（其他基本类型均返回相应的类型）</li>
+<li>特例2：<code>typeof new Function()='​function'</code>（其他引用类型均返回&rsquo;object'）</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>instanceof</strong></p>
+<ul>
+<li>检查A是否为B的实例（即判断<code>A.__protp__===B.prototype</code>的返回值）</li>
+<li>是则返回<code>true</code>，不是返回<code>false</code></li>
+</ul>
+</blockquote>
+<p>因此，判断参数是否为数组，要用<code>instanceof</code>或者<code>isArray</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//只考虑对象和数组
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">deepClone</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="o">===</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">obj</span> <span class="o">!==</span><span class="s1">&#39;object&#39;</span><span class="p">)</span><span class="k">return</span>
+  <span class="kd">let</span> <span class="nx">newObj</span><span class="o">=</span><span class="nx">obj</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="o">?</span><span class="p">[]</span><span class="o">:</span><span class="p">{}</span>
+  
+  <span class="c1">//拷贝可枚举属性
+</span><span class="c1"></span>  <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">)){</span>
+      <span class="c1">//内部属性是对象就深拷贝,否则直接赋值
+</span><span class="c1"></span>    	<span class="nx">newObj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="o">=</span><span class="k">typeof</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="o">===</span><span class="s1">&#39;object&#39;</span><span class="o">?</span><span class="nx">deepClone</span><span class="p">(</span><span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">])</span><span class="o">:</span><span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">newObj</span>
+<span class="p">}</span>
+
+</code></pre></div><p>这里只考虑了 Array、Object 两种引用类型数据的处理，<!-- raw HTML omitted -->引用类型的数据还有Function 函数、Date 日期、RegExp 正则、Map 数据结构、Set 数据机构，其中 Map 、Set 属于 ES6 的。<!-- raw HTML omitted -->还需要检查环引用</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/es6/">es6</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" class="prev" rel="prev" title="JS函数的执行时机"><i class="fas fa-angle-left fa-fw"></i>JS函数的执行时机</a>
+            <a href="/posts/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/" class="next" rel="next" title="函数防抖和函数节流是什么？">函数防抖和函数节流是什么？<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">可喜</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

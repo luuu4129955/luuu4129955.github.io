@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>为什么会有Cookie和Session - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="为什么会有Cookie和Session" />
+<meta property="og:description" content="为什么会有cookie 由于HTTP协议无状态这一特性，当客户端请求服务器时，每次都是一个新的请求，浏览器并不能记住请求记录。为了解决这个问题" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/cookie%E5%92%8Csession/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-16T15:28:19+08:00" />
+<meta property="article:modified_time" content="2021-09-16T15:28:19+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="为什么会有Cookie和Session"/>
+<meta name="twitter:description" content="为什么会有cookie 由于HTTP协议无状态这一特性，当客户端请求服务器时，每次都是一个新的请求，浏览器并不能记住请求记录。为了解决这个问题"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/cookie%E5%92%8Csession/" /><link rel="prev" href="https://luuu4129955.github.io/posts/%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E4%B9%8Bcors%E5%92%8Cjsonp/" /><link rel="next" href="https://luuu4129955.github.io/posts/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "为什么会有Cookie和Session",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/cookie%E5%92%8Csession\/"
+        },"genre": "posts","keywords": "前后端分离","wordcount":  2955 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/cookie%E5%92%8Csession\/","datePublished": "2021-09-16T15:28:19+08:00","dateModified": "2021-09-16T15:28:19+08:00","publisher": {
+            "@type": "Organization",
+            "name": "可喜"},"author": {
+                "@type": "Person",
+                "name": "可喜"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">😉可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">😉可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">为什么会有Cookie和Session</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>可喜</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-16">2021-09-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2955 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么会有cookie">为什么会有cookie</a></li>
+    <li><a href="#cookie是什么">cookie是什么？</a></li>
+    <li><a href="#cookie的三个主要用途">cookie的三个主要用途</a>
+      <ul>
+        <li><a href="#会话管理">会话管理</a></li>
+        <li><a href="#个性化设置">个性化设置</a></li>
+        <li><a href="#浏览器行为跟踪">浏览器行为跟踪</a></li>
+      </ul>
+    </li>
+    <li><a href="#cookie如何保存用户数据呢">cookie如何保存用户数据呢</a>
+      <ul>
+        <li><a href="#以保存用户登录状态举例">以保存用户登录状态举例</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#为什么会有session">为什么会有session？</a></li>
+    <li><a href="#session是什么">session是什么？</a></li>
+    <li><a href="#cookie配合session">cookie配合session</a></li>
+    <li><a href="#拓展1禁用cookie">拓展1：禁用cookie</a>
+      <ul>
+        <li><a href="#请求地址携带sessionid作为查询参数">请求地址携带sessionID作为查询参数</a></li>
+        <li><a href="#使用token">使用token</a></li>
+      </ul>
+    </li>
+    <li><a href="#拓展2分布式session">拓展2：分布式session</a>
+      <ul>
+        <li><a href="#共享session">共享session</a></li>
+      </ul>
+    </li>
+    <li><a href="#cookie与session对比">cookie与session对比</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="为什么会有cookie">为什么会有cookie</h2>
+<p>由于<code>HTTP</code>协议<strong>无状态</strong>这一特性，当客户端请求服务器时，每次都是一个新的请求，浏览器并不能记住请求记录。<!-- raw HTML omitted -->为了解决这个问题。产生了<strong>cookie</strong>。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="cookie是什么">cookie是什么？</h2>
+<p>cookie是由服务器下发给浏览器的一小段数据。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="cookie的三个主要用途">cookie的三个主要用途</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="会话管理">会话管理</h3>
+<p>保存用户登录状态、保存用户游戏记录、购物车以及其他需要记录的信息
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="个性化设置">个性化设置</h3>
+<p>用户偏好、用户自定义设置、主题等
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="浏览器行为跟踪">浏览器行为跟踪</h3>
+<p>如跟踪分析用户行为等
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="cookie如何保存用户数据呢">cookie如何保存用户数据呢</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="以保存用户登录状态举例">以保存用户登录状态举例</h3>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="用户注册阶段">用户注册阶段</h4>
+<p>前端：注册页<code>sign_up.html</code>发送请求</p>
+<ol>
+<li>写一个<code>form</code>表单供用户填写用户名和密码；</li>
+<li>监听<code>submit</code>事件；</li>
+<li>发送<code>POST</code>请求，用户数据位于请求体（这里用的是<code>jQuery的AJAX</code>）；</li>
+<li>注册成功就跳转到 登录页<code>sign_in.html</code>。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span>
+      <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span>
+      <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover&#34;</span>
+    <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>注册<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;signUpForm&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>用户名 <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;name&#34;</span> <span class="p">/&gt;</span> <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>密码 <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="p">/&gt;</span> <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span>注册<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://code.jquery.com/jquery-3.6.0.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="kr">const</span> <span class="nx">$form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#signUpForm&#34;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;submit&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&#34;input[name=name]&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+        <span class="kr">const</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&#34;input[name=password]&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">password</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+          <span class="nx">method</span><span class="o">:</span> <span class="s2">&#34;post&#34;</span><span class="p">,</span>
+          <span class="nx">url</span><span class="o">:</span> <span class="s2">&#34;/sign_up&#34;</span><span class="p">,</span>
+          <span class="nx">contentType</span><span class="o">:</span> <span class="s2">&#34;text/json;charset=UTF-8&#34;</span><span class="p">,</span>
+          <span class="nx">data</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">password</span> <span class="p">}),</span>
+        <span class="p">}).</span><span class="nx">then</span><span class="p">(</span>
+          <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;注册成功&#34;</span><span class="p">);</span>
+            <span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&#34;/sign_in.html&#34;</span><span class="p">;</span>
+          <span class="p">},</span>
+          <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{}</span>
+        <span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+
+</code></pre></div><p>数据库：<code>user.json</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">[]</span>  <span class="err">//使用一个空数组作为数据库存用户名和密码</span>
+</code></pre></div><p>后端：<code>server.js</code>响应请求</p>
+<ol>
+<li>后端接收<code>POST</code>请求；</li>
+<li>后端接收请求体中的用户名和密码；</li>
+<li>把用户数据写到数据库，并生成一个<code>id</code>。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">path</span> <span class="o">===</span> <span class="s2">&#34;/sign_up&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">method</span> <span class="o">===</span> <span class="s2">&#34;POST&#34;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s2">&#34;content-type&#34;</span><span class="p">,</span> <span class="s2">&#34;text/html;charset=utf-8&#34;</span><span class="p">);</span>
+    <span class="kr">const</span> <span class="nx">usersArray</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;./db/users.json&#34;</span><span class="p">));</span>
+    <span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">chunk</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">chunk</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;end&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">array</span><span class="p">);</span>
+      <span class="kr">const</span> <span class="nx">string</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">array</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
+      <span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">password</span><span class="p">);</span>
+      <span class="kr">const</span> <span class="nx">lastUser</span> <span class="o">=</span> <span class="nx">usersArray</span><span class="p">[</span><span class="nx">usersArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+      <span class="kr">const</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="c1">// id为最后一个用户的 id+1
+</span><span class="c1"></span>        <span class="nx">id</span><span class="o">:</span> <span class="nx">lastUser</span> <span class="o">?</span> <span class="nx">lastUser</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+        <span class="nx">password</span><span class="o">:</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+      <span class="p">};</span>
+      <span class="nx">usersArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newUser</span><span class="p">);</span>
+      <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span><span class="p">(</span><span class="s2">&#34;./db/users.json&#34;</span><span class="p">,</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">usersArray</span><span class="p">));</span>
+      <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">}</span> 
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h4 id="用户登录时">用户登录时</h4>
+<p>前端：登录页<code>sign_in.html</code></p>
+<ol>
+<li>写一个<code>form</code>表单供用户填写用户名和密码；</li>
+<li>监听<code>submit</code>事件；</li>
+<li>发送<code>POST</code>请求，用户数据位于请求体（这里用的是<code>jQuery的AJAX</code>）；</li>
+<li>登录成功就跳转到 主页<code>home.html</code>。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1.0&#34;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;signInForm&#34;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>用户名 <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;name&#34;</span> <span class="p">/&gt;</span> <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>密码 <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="p">/&gt;</span> <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span>登录<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://code.jquery.com/jquery-3.6.0.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="kr">const</span> <span class="nx">$form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#signInForm&#34;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;submit&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&#34;input[name=name]&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+        <span class="kr">const</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&#34;input[name=password]&#34;</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">password</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+          <span class="nx">method</span><span class="o">:</span> <span class="s2">&#34;post&#34;</span><span class="p">,</span>
+          <span class="nx">url</span><span class="o">:</span> <span class="s2">&#34;/sign_in&#34;</span><span class="p">,</span>
+          <span class="nx">contentType</span><span class="o">:</span> <span class="s2">&#34;text/json;charset=UTF-8&#34;</span><span class="p">,</span>
+          <span class="nx">data</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">password</span> <span class="p">}),</span>
+        <span class="p">}).</span><span class="nx">then</span><span class="p">(</span>
+          <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;登录成功&#34;</span><span class="p">);</span>
+            <span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="s2">&#34;/home.html&#34;</span><span class="p">;</span>
+          <span class="p">},</span>
+          <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{}</span>
+        <span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+
+</code></pre></div><p>后端：<code>server.js</code>响应请求</p>
+<ol>
+<li>后端接收<code>POST</code>请求；</li>
+<li>后端获取请求体中的用户名和密码；</li>
+<li>后端读取数据，看是否和数据库的用户名密码相匹配；</li>
+<li>如果匹配，后端需要<code>set-cookie</code></li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">path</span> <span class="o">===</span> <span class="s2">&#34;/sign_in&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">method</span> <span class="o">===</span> <span class="s2">&#34;POST&#34;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">usersArray</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;./db/users.json&#34;</span><span class="p">));</span>
+    <span class="c1">// 写数据
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">chunk</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">chunk</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;end&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">string</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">array</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
+      <span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span> <span class="c1">//name password
+</span><span class="c1"></span>
+      <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">usersArray</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+        <span class="c1">// 箭头函数是一个回调函数，得到的返回值作为参数再传给.find()
+</span><span class="c1"></span>        <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+          <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">&amp;&amp;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">password</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">password</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">usersArray</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">result</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s2">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s2">&#34;text/json;charset=utf-8&#34;</span><span class="p">);</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="sb">`{&#39;errorCode&#39;:4001}`</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+        <span class="c1">// 用户名密码匹配，set-cookie标记用户已登录
+</span><span class="c1"></span>        <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s2">&#34;Set-Cookie&#34;</span><span class="p">,</span> <span class="sb">`userId=</span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+</code></pre></div><p><strong>并且，在继续发起相同二级域名请求（任何请求）时，浏览器必须附上这个cookie。</strong>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="总结">总结</h3>
+<ol>
+<li>cookie是服务器下发给浏览器的一段字符串；</li>
+<li>浏览器必须保存这个cookie（除非用户删除），存放在浏览器的<code>localStorage</code>；</li>
+<li>之后发起相同二级域名请求（任何请求）时，浏览器必须附上这个cookie。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ol>
+<h2 id="为什么会有session">为什么会有session？</h2>
+<p>仅仅使用<code>cookie</code>用来保存数据在浏览器上有以下几个弊端：</p>
+<ol>
+<li><strong>cookie</strong>的存储量有限，上限是4k;；</li>
+<li><strong>cookie</strong>将用户信息存储在浏览器，容易被获取，安全性较低；</li>
+<li><strong>cookie</strong>全部存在浏览器，服务端无法验证，这样伪造和仿冒会更加容易。</li>
+</ol>
+<p><!-- raw HTML omitted --><strong>因此我们需要通过</strong><code>**session**</code><strong>将用户数据隐藏在服务器。</strong>
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="session是什么">session是什么？</h2>
+<p><code>session</code> 代表着服务器和客户端一次<strong>会话</strong>的过程。<!-- raw HTML omitted -->Session 对象存储特定用户会话所需的属性及配置信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。当客户端关闭会话，或者 Session 超时失效时会话结束。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="cookie配合session">cookie配合session</h2>
+<ol>
+<li>客户端请求服务器时，服务器创建一个<code>**session**</code><strong>会话</strong>（存放了用户会话数据），并生成一个<strong>唯一</strong><code>sessionID</code>发给浏览器；</li>
+<li>浏览器接收到服务器返回的 <code>sessionID </code>信息后，会将此信息存入到 <code>cookie</code> 中，同时<code>cookie</code>记录此 <code>sessionID</code> 属于哪个域名；</li>
+<li>当用户<strong>第二次访问服务器</strong>的时候，请求会自动判断此域名下是否存在 <code>cookie</code> 信息，如果存在自动将</li>
+</ol>
+<p><code>cookie </code>信息也发送给服务端，服务端会从 <code>cookie</code> 中获取 <code>sessionID</code>，再根据<code> sessionID</code> 查找对应的 <code>session </code>信息，如果没有找到说明用户没有登录或者登录失效，如果找到 <code>session</code> 证明用户已经登录可执行后面操作。<!-- raw HTML omitted -->​</p>
+<p><strong>总结：cookie和session之间通过</strong><code>sessionID</code>建立联系。<!-- raw HTML omitted -->​</p>
+<p>服务器创建一个<code>seesion.json</code><!-- raw HTML omitted -->​</p>
+<p>后端：<code>server.js</code>响应请求</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">path</span> <span class="o">===</span> <span class="s2">&#34;/sign_in&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">method</span> <span class="o">===</span> <span class="s2">&#34;POST&#34;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">usersArray</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s2">&#34;./db/users.json&#34;</span><span class="p">));</span>
+    <span class="c1">// 写数据
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">chunk</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">chunk</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">request</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;end&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">string</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">array</span><span class="p">).</span><span class="nx">toString</span><span class="p">();</span>
+      <span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span> <span class="c1">//name password
+</span><span class="c1"></span>
+      <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">usersArray</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+        <span class="c1">// 箭头函数是一个回调函数，得到的返回值作为参数再传给.find()
+</span><span class="c1"></span>        <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+          <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">&amp;&amp;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">password</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">result</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s2">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s2">&#34;text/json;charset=utf-8&#34;</span><span class="p">);</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="sb">`{&#39;errorCode&#39;:4001}`</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+        <span class="c1">// 用户名密码匹配，set-cookie标记用户已登录
+</span><span class="c1"></span>        <span class="c1">//生成一个随机数作为sessionID并设置成cookie
+</span><span class="c1"></span>        <span class="kr">const</span> <span class="nx">random</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">();</span>
+        <span class="c1">//sessionID作为key去读session中对应的用户数据
+</span><span class="c1"></span>        <span class="kr">const</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">&#39;./session.json&#39;</span><span class="p">).</span><span class="nx">toString</span><span class="p">())</span>
+        <span class="nx">session</span><span class="p">[</span><span class="nx">random</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nx">user_id</span><span class="o">:</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s2">&#34;Set-Cookie&#34;</span><span class="p">,</span> <span class="sb">`session_id=</span><span class="si">${</span><span class="nx">random</span><span class="si">}</span><span class="sb">;HttpOnly`</span><span class="p">);</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="拓展1禁用cookie">拓展1：禁用cookie</h2>
+<blockquote>
+<p>如果浏览器中禁止了 cookie，如何实现功能？</p>
+</blockquote>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="请求地址携带sessionid作为查询参数">请求地址携带sessionID作为查询参数</h3>
+<p>每次请求中都携带一个 SessionID 的参数，也可以 Post 的方式提交，也可以在请求的地址后面拼接xxx?SessionID=123456&hellip;。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="使用token">使用token</h3>
+<p>Token 机制。Token 机制多用于 App 客户端和服务器交互的模式，也可以用于 Web 端做用户状态管理。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="拓展2分布式session">拓展2：分布式session</h2>
+<blockquote>
+<p>如何考虑分布式 Session 问题？
+在互联网公司为了可以支撑更大的流量，后端往往需要多台服务器共同来支撑前端用户请求，那如果用户在 A 服务器登录了，第二次请求跑到服务 B 就会出现登录失效问题。</p>
+</blockquote>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="共享session">共享session</h3>
+<p>共享 Session，服务端无状态话，将用户的 Session 等信息使用缓存中间件来统一管理，保障分发到每一个服务器的响应结果都一致。<!-- raw HTML omitted -->​<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="cookie与session对比">cookie与session对比</h2>
+<ol>
+<li>
+<p><strong>作用范围不同：</strong> Cookie将数据存在客户端的内存和磁盘上；Session将值存在服务器端的内存中；</p>
+</li>
+<li>
+<p><strong>隐私策略不同：</strong> Cookie 存储在客户端，比较容易遭到不法获取，早期有人将用户的登录名和密码存储在 Cookie 中导致信息被窃取；Session 存储在服务端，安全性相对 Cookie 要好一些。</p>
+</li>
+<li>
+<p><strong>存值类型不同：</strong> Cookie存的值是String类型；session存的值是Object类型。</p>
+</li>
+<li>
+<p><strong>有效期不同：</strong> Cookie 可设置为长时间保持，比如我们经常使用的默认登录功能，Session 一般失效时间较短，客户端关闭或者 Session 超时都会失效。</p>
+</li>
+<li>
+<p><strong>存储大小不同：</strong> cookie对同一个网站最多只能存20个cookie，每个Cookie最大只能4KB；Session对存储数据的长度无要求；</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-09-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/">前后端分离</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E4%B9%8Bcors%E5%92%8Cjsonp/" class="prev" rel="prev" title="解决跨域之CORS和JSONP"><i class="fas fa-angle-left fa-fw"></i>解决跨域之CORS和JSONP</a>
+            <a href="/posts/js%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" class="next" rel="next" title="JS函数的执行时机">JS函数的执行时机<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">可喜</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

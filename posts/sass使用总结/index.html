@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Sass使用总结 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="Sass使用总结" />
+<meta property="og:description" content="最近做项目 Vue3造轮子 时，用到的。顺便记录下。参考Sass中文文档" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/sass%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T15:27:43+08:00" />
+<meta property="article:modified_time" content="2022-02-14T15:27:43+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sass使用总结"/>
+<meta name="twitter:description" content="最近做项目 Vue3造轮子 时，用到的。顺便记录下。参考Sass中文文档"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/sass%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" /><link rel="prev" href="https://luuu4129955.github.io/posts/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/" /><link rel="next" href="https://luuu4129955.github.io/posts/jquery%E5%85%A5%E9%97%A8jquery%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Sass使用总结",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/sass%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93\/"
+        },"genre": "posts","keywords": "CSS","wordcount":  984 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/sass%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93\/","datePublished": "2022-02-14T15:27:43+08:00","dateModified": "2022-02-14T15:27:43+08:00","publisher": {
+            "@type": "Organization",
+            "name": "可喜"},"author": {
+                "@type": "Person",
+                "name": "可喜"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">😉可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">😉可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Sass使用总结</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>可喜</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 984 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#6sasscript">6.Sasscript</a></li>
+    <li><a href="#1变量">1.<code>$</code>变量</a></li>
+    <li><a href="#2数据类型">2.数据类型</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>最近做项目 <strong>Vue3造轮子</strong> 时，用到的。顺便记录下。<!-- raw HTML omitted -->参考<a href="https://www.sass.hk/docs/" target="_blank" rel="noopener noreffer">Sass中文文档</a></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="1语法格式scss">1.语法格式SCSS</h1>
+<p>Sass 有两种语法格式。首先是 SCSS (Sassy CSS) —— 也是本文示例所使用的格式 —— 这种格式仅在 CSS3 语法的基础上进行拓展，所有 CSS3 语法在 SCSS 中都是通用的，同时加入 Sass 的特色功能。此外，SCSS 也支持大多数 CSS hacks 写法以及浏览器前缀写法 (vendor-specific syntax)，以及早期的 IE 滤镜写法。这种格式以<code>.scss</code> 作为拓展名。<!-- raw HTML omitted -->还有一种最早的，是以<code>.sass</code>为后缀名<!-- raw HTML omitted -->两种格式可以通过<code>sass-convert</code>切换</p>
+<pre tabindex="0"><code class="language-git" data-lang="git"># Convert Sass to SCSS
+$ sass-convert style.sass style.scss
+
+# Convert SCSS to Sass
+$ sass-convert style.scss style.sass
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="2允许选择器嵌套">2.允许选择器嵌套</h1>
+<p>优点：避免重复写父级选择器<!-- raw HTML omitted -->用法：父选择器的样式内部再嵌套子选择器<!-- raw HTML omitted -->代码示例：</p>
+<pre tabindex="0"><code>.parent{
+	color:#000;
+  
+  .son{
+  	width:20px;
+    height:20px;
+    background-color: #ff0000;
+  }
+}
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="3符号代表嵌套外层的父选择器">3.&amp;符号代表嵌套外层的父选择器</h1>
+<p>优点：结构清晰，避免重复写父选择器<!-- raw HTML omitted -->用法：</p>
+<ul>
+<li>&amp;代表嵌套规则外层的选择器</li>
+</ul>
+<p>代码示例：</p>
+<ol>
+<li><strong>给元素设定</strong><code>**:hover**</code><strong>、</strong><code>**::before**</code><strong>、</strong><code>**::after**</code><strong>这种：</strong></li>
+</ol>
+<pre tabindex="0"><code>.parent{
+	color:#000;
+  &amp;:hover{color:red}
+}
+</code></pre><ol start="2">
+<li><code>body</code>有classname时，用<code>&amp;</code>代表嵌套规则外层的选择器</li>
+</ol>
+<pre tabindex="0"><code>.parent{
+	color:#000;
+  body.demo &amp;{color:red}
+}
+</code></pre><ol start="3">
+<li><strong>如果含有多层嵌套，最外层的父选择器会一层一层向下传递：</strong></li>
+</ol>
+<pre tabindex="0"><code>.parent{
+	color:#000;
+  
+  .son{
+  	width:20px;
+    height:20px;
+    background-color: #ff0000;
+    
+    &amp;:hover{ background-color: blue;}
+  }
+}
+</code></pre><p>这里的<code>&amp;</code>表示：</p>
+<pre tabindex="0"><code>.parent .son:hover{background-color: blue;}
+</code></pre><ol start="4">
+<li><code>&amp;</code>作为选择器的第一个字符，其后可以跟随后缀生成复合的选择器</li>
+</ol>
+<p>代码示例：</p>
+<pre tabindex="0"><code>#main {
+  color: black;
+  &amp;-sidebar { border: 1px solid; }
+}
+</code></pre><ul>
+<li>这里的<code>&amp;-sidebar</code>表示<code>#main-sidebar</code></li>
+<li>当父选择器含有不合适的后缀时，Sass 将会报错。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h1 id="4允许属性嵌套">4.允许属性嵌套</h1>
+<p>优点：避免重复输入同一类的属性<!-- raw HTML omitted -->用法：</p>
+<ul>
+<li>所有同一类的属性的前缀只用写一次，然后都写到<code>{}</code>里</li>
+<li>前缀后面也可以写属性</li>
+</ul>
+<p>代码示例：</p>
+<pre tabindex="0"><code>.funky {
+  font: 20px/24px {
+    family: fantasy;
+    weight: bold;
+  }
+}
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="5注释多了单行注释">5.注释多了//单行注释</h1>
+<ul>
+<li>有css原有的多行注释<code>/* */</code>会被编译到css文件里</li>
+<li>多了css原本没有的<code>//</code>单行注释，不会被编译到css文件里
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h2 id="6sasscript">6.Sasscript</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="1变量">1.<code>$</code>变量</h2>
+<ul>
+<li>支持块级作用域</li>
+<li>嵌套内部定义的<code>$变量</code>只能在嵌套内部使用</li>
+<li>嵌套外部定义的<code>$变量</code>可以在全局使用</li>
+<li>将局部变量转换为全局变量可以添加 <code>!global</code>声明</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>如果变量赋值是一个像素，那么之后改像素值只用改这个变量，非常省事。</li>
+</ul>
+<p>碰壁？这里的span选择器和&amp;:hover &gt; span选择器为啥用不了$h变量？😥<!-- raw HTML omitted -->做Vue3造轮子中的switch组件时。先用像素写着吧。</p>
+<pre tabindex="0"><code>&lt;style lang=&quot;scss&quot;&gt;
+$h: 22px;
+$h2: $h -4px;
+button {
+  border: none;
+  background-color: blue;
+  width: $h * 2;
+  height: $h;
+  border-radius: $h/2;
+  position: relative;
+  span {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    border-radius: 9px;
+  }
+  &amp;:hover &gt; span {
+    left: calc(100% - #{$h2} - 2px);
+  }
+}
+&lt;/style&gt;
+</code></pre><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="2数据类型">2.数据类型</h2>
+<p><!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/css/">CSS</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/" class="prev" rel="prev" title="函数防抖和函数节流是什么？"><i class="fas fa-angle-left fa-fw"></i>函数防抖和函数节流是什么？</a>
+            <a href="/posts/jquery%E5%85%A5%E9%97%A8jquery%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="next" rel="next" title="jQuery设计思想">jQuery设计思想<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">可喜</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

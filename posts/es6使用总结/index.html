@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>ES6使用总结 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="ES6使用总结" />
+<meta property="og:description" content="如何学习？点击查看ES 6 新特性列表一个个地点进去查看MDN的例子" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luuu4129955.github.io/posts/es6%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T15:27:43+08:00" />
+<meta property="article:modified_time" content="2022-02-14T15:27:43+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ES6使用总结"/>
+<meta name="twitter:description" content="如何学习？点击查看ES 6 新特性列表一个个地点进去查看MDN的例子"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://luuu4129955.github.io/posts/es6%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" /><link rel="prev" href="https://luuu4129955.github.io/posts/jquery%E5%85%A5%E9%97%A8jquery%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" /><link rel="next" href="https://luuu4129955.github.io/posts/dom%E6%98%AF%E4%BB%80%E4%B9%88%E5%BE%85%E5%AE%8C%E5%96%84/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ES6使用总结",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/luuu4129955.github.io\/posts\/es6%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93\/"
+        },"genre": "posts","keywords": "es6","wordcount":  2507 ,
+        "url": "https:\/\/luuu4129955.github.io\/posts\/es6%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93\/","datePublished": "2022-02-14T15:27:43+08:00","dateModified": "2022-02-14T15:27:43+08:00","publisher": {
+            "@type": "Organization",
+            "name": "可喜"},"author": {
+                "@type": "Person",
+                "name": "可喜"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="可喜のlife">😉可喜のlife</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="可喜のlife">😉可喜のlife</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">ES6使用总结</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>可喜</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2507 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#经典面试题6个6">经典面试题：6个6</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#如何输出012345">如何输出012345？</a>
+      <ul>
+        <li><a href="#使用let">使用let</a></li>
+        <li><a href="#写立即执行函数">写立即执行函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#varletconst的区别">var、let、const的区别</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#class">class</a></li>
+    <li><a href="#class的继承">class的继承</a></li>
+    <li><a href="#promise">promise</a>
+      <ul>
+        <li><a href="#promiseall">promise.all</a></li>
+        <li><a href="#promiserace">promise.race</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#语法">语法</a></li>
+    <li><a href="#使用场景">使用场景</a>
+      <ul>
+        <li><a href="#1交换变量">1.交换变量</a></li>
+        <li><a href="#2访问可能为空的值属性">2.访问可能为空的值/属性</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>如何学习？<!-- raw HTML omitted --><a href="https://fangyinghang.com/es-6-tutorials/" target="_blank" rel="noopener noreffer">点击查看ES 6 新特性列表</a><!-- raw HTML omitted -->一个个地点进去查看MDN的例子</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="块级作用域block">块级作用域block</h1>
+<p>通过var声明的变量或者非严格模式下(non-strict mode)创建的函数声明<strong>没有</strong>块级作用域。<!-- raw HTML omitted -->2种情况会有块级作用域：<!-- raw HTML omitted --><code>{}</code>、<code>label:{}</code><!-- raw HTML omitted -->严格模式下，使用<code>let</code>、<code>const</code>声明的变量是有块级作用域的。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="经典面试题6个6">经典面试题：6个6</h2>
+<blockquote>
+<p>setTimeout() <strong>接受两个参数：</strong></p>
+<ol>
+<li>第一个是包含js代码的字符串和函数，第二个参数是等待多长时间的毫秒数</li>
+<li>第二个参数是指第一段代码经过多少ms后会被加入到队列中。</li>
+</ol>
+</blockquote>
+<p>**返回值：**返回整型数值id,是setTimeout的唯一标识符,可用于取消setTimeout设置的函数<!-- raw HTML omitted -->clearTimeout(id)。</p>
+<blockquote>
+<p>同步和异步：
+同步：可以直接拿到结果（预期返回值）或看到了预期效果
+异步：不能直接拿到结果，需要通过一些方法（例如：轮询、回调等）
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</blockquote>
+<h5 id="settimeout-到底是同步还是异步的-同步">setTimeout 到底是同步还是异步的 ？→同步！</h5>
+<blockquote>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+</blockquote>
+<h5 id="除了放置异步任务的事件任务队列还可以放置定时事件">除了放置异步任务的事件，&ldquo;任务队列&quot;还可以放置定时事件。</h5>
+<blockquote>
+<p>setTimeout()接受两个参数，第一个是回调函数，第二个是推迟执行的毫秒数。<!-- raw HTML omitted -->需要注意的是，setTimeout()只是将事件插入了&quot;任务队列&rdquo;，必须等到当前代码（执行栈）执行完，主线程才会去执行它指定的回调函数。要是当前代码耗时很长，有可能要等很久，所以并没有办法保证，回调函数一定会在setTimeout()指定的时间执行。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+	<span class="nx">setTimeout</span><span class="p">(</span>
+  	<span class="p">()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)}</span>
+  <span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">//输出结果：6个6
+</span><span class="c1">//原因：i=6时不符合i&lt;6的条件退出循环，此时循环结束
+</span><span class="c1">//当前循环结束后马上执行setTimeout里的这个回调函数，但此时的i=6，所以会打出6个6
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="如何输出012345">如何输出012345？</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="使用let">使用let</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+	<span class="nx">setTimeout</span><span class="p">(</span>
+  	<span class="p">()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)}</span>
+  <span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">//let的作用：就是把当前i记下，不随着i++而改变。作用域就是{}
+</span></code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="写立即执行函数">写立即执行函数</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+	<span class="o">!</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="nx">setTimeout</span><span class="p">(</span>
+  	<span class="p">()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)}</span>
+  <span class="p">,</span><span class="mi">0</span><span class="p">)(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">//每次进循环体，都会把当时的i赋值给里面的i。里面的i不会i++
+</span></code></pre></div><p>​<!-- raw HTML omitted -->
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="varletconst的区别">var、let、const的区别</h2>
+<ol>
+<li><code>var</code>声明的变量处于全局作用域；<code>let</code>、<code>const</code>声明的变量处于块级作用域</li>
+<li>用<code>let</code>重定义变量会抛出一个语法错误：Identifier &lsquo;a&rsquo; has already been declared。变量a已经被声明。</li>
+<li><code>const</code>是用来定义常量的。</li>
+</ol>
+<ul>
+<li>不能只声明不赋值</li>
+<li>不能重新赋值</li>
+<li>不能重复声明变量</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span><span class="s1">&#39;a&#39;</span><span class="p">};</span><span class="c1">//const 定义引用类型时，表示这个对象的地址是不能改变的
+</span><span class="c1"></span><span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span><span class="s1">&#39;b&#39;</span><span class="p">};</span><span class="c1">//但是对象内部的属性是可以改变的
+</span><span class="c1"></span><span class="nx">a</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span>
+</code></pre></div><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function" target="_blank" rel="noopener noreffer">函数声明</a>同样被限制在声明他的语句块内
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="必备">必备</h1>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="class">class</h2>
+<p><a href="https://es6.ruanyifeng.com/#docs/class" target="_blank" rel="noopener noreffer">点击查看阮一峰关于class的说明</a><!-- raw HTML omitted --><strong>class内部写2个东西：</strong></p>
+<ul>
+<li><strong>一个是</strong><code>**constructor(){}**</code><strong>定义了实例的属性，里面的</strong><code>**this**</code><strong>代表实例对象。属性在实例身上。</strong></li>
+<li><strong>一个定义类的方法：类的所有方法都定义在类的prototype属性上面。</strong></li>
+</ul>
+<p>几点需要注意的：</p>
+<blockquote>
+<ol>
+<li>​写类的方法时，如果有this，这个this指向类的实例。如果将这个方法提取出来单独使用，this会指向该方法运行时所在的环境（由于 class 内部是严格模式，所以 this 实际指向的是undefined）从而报错</li>
+</ol>
+</blockquote>
+<p><strong>解决办法：</strong></p>
+<blockquote>
+<p><strong>在构造函数上绑定this</strong>
+<strong>在构造函数中使用箭头函数</strong></p>
+</blockquote>
+<blockquote>
+<p>2.实例的属性可以简写：直接定义在类的最顶层，不用写this</p>
+</blockquote>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="class的继承">class的继承</h2>
+<p><a href="https://es6.ruanyifeng.com/#docs/class-extends" target="_blank" rel="noopener noreffer">点击查看阮一峰关于class继承的说明</a><!-- raw HTML omitted --><strong>继承怎么写：</strong></p>
+<ul>
+<li><strong>子类使用父类时，必须调用</strong><code>**super()**</code><strong>，其代表了父类的构造函数。</strong></li>
+<li><strong>然后再用</strong><code>**constructor()**</code><strong>改造。</strong></li>
+</ul>
+<p>先将父类实例对象的属性和方法，加到this上面（所以必须先调用super方法），然后再用子类的构造函数修改this。
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="promise">promise</h2>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="promiseall">promise.all</h3>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="promiserace">promise.race</h3>
+<h1 id="let-和-const">let 和 const</h1>
+<p><code>let</code>和<code>const</code>都必须先声明，再使用，声明的变量处于块级作用域。
+<code>const</code>不能重复声明，声明时必须赋值，且一旦赋值不能改变。
+所以一般写代码时，用<code>let</code>声明变量，<code>const</code>声明常量。</p>
+<h1 id="字符串模板">字符串模板</h1>
+<p>使用<code> ```标识，内部可以使用</code>${}`存放变量，JS表达式，对象的引用以及函数调用等。
+在字符串模板中的空格、换行等格式会被保留</p>
+<h1 id="运算符">&hellip;运算符</h1>
+<p><code>...</code>运算符可以叫扩展运算符，用来展开一个可迭代对象中的所有项。</p>
+<pre tabindex="0"><code>//拷贝数组
+var arr1 = [1, 2, 3];
+var arr2 = [...arr1];
+
+console.log(arr1 === arr2) // false
+
+arr2.push(4); // 修改arr2，不会影响arr1的值
+
+console.log(arr1); // [1, 2, 3]
+console.log(arr2); // [1, 2, 3, 4]
+
+//拷贝对象
+var obj1 = {
+    a: 1,
+    b: 2
+};
+
+var obj2 = {...obj1};
+
+console.log(obj1 === obj2); // false
+
+obj2.c = 3; // 修改obj2不会影响obj1
+console.log(obj1); // {a: 1, b: 2}
+console.log(obj2); // {a: 1, b: 2, c: 3}
+
+//字符串转数组
+var str = 'hello';
+// ES5 处理方式
+var es5Arr = str.split('');
+console.log(es5Arr) // [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
+
+// ES6 处理方式
+var es6Arr = [...str];
+console.log(es6Arr) // [&quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
+
+//类数组转化为数组
+const nodeList = document.getElementsByClassName(&quot;test&quot;);
+const array = [...nodeList];
+  
+console.log(nodeList); //Result: HTMLCollection [ div.test, div.test ]
+console.log(array); //Result: Array [ div.test, div.test ]
+</code></pre><p><code>...</code>还可以叫剩余操作符，把剩余参数合并起来</p>
+<pre tabindex="0"><code>//如果形参个数太多
+let demoFun = function(argA, ...args) {
+    console.log(argA);
+    console.log(args)
+}
+
+demoFun(1, 2, 3);
+// 1
+// [2, 3]
+</code></pre><p>解构赋值时也经常用到<code>...</code>运算符。</p>
+<h1 id="解构赋值">解构赋值</h1>
+<p>将属性/值从对象/数组中取出,赋值给其他变量。</p>
+<h2 id="语法">语法</h2>
+<pre tabindex="0"><code>var a, b, rest;
+[a, b] = [10, 20];
+console.log(a); // 10
+console.log(b); // 20
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+console.log(a); // 10
+console.log(b); // 20
+console.log(rest); // [30, 40, 50]
+
+({ a, b } = { a: 10, b: 20 });
+console.log(a); // 10
+console.log(b); // 20
+
+
+({a, b, ...rest} = {a: 10, b: 20, c: 30, d: 40});
+console.log(a); // 10
+console.log(b); // 20
+console.log(rest); // {c: 30, d: 40}
+</code></pre><h2 id="使用场景">使用场景</h2>
+<h3 id="1交换变量">1.交换变量</h3>
+<pre tabindex="0"><code>let zero = 2;
+let one = 1;
+let two = 0;
+
+[zero, one, two] = [two, one, zero];
+
+console.log(zero); // 0
+console.log(one); // 1
+console.log(two); // 2
+</code></pre><h3 id="2访问可能为空的值属性">2.访问可能为空的值/属性</h3>
+<p>不需要<code>if</code>判断是否为空，直接数组解构给一个默认值</p>
+<pre tabindex="0"><code>const colors = [];
+const [firstColor = 'white'] = colors;
+console.log(firstColor); // 'white'
+</code></pre><h1 id="模块化">模块化</h1>
+<p>使用<code>export</code>导出，<code>import</code>导入</p>
+<pre tabindex="0"><code>//module.js
+export let temp=&quot;这是一个临时变量&quot;;
+export let isTrue=false;
+export function run(){
+   console.log(&quot;hellow&quot;);
+}
+//main.js
+import { temp, isTrue, run } from &quot;./module&quot;;
+console.log(temp,isTrue);
+run();
+
+//export default默认导出
+//module.js
+let temp=&quot;临时变量&quot;;
+let isTrue=false;
+export default { temp, isTrue };
+//main.js
+import module from './module'
+console.log(module.temp, module.isTrue); 
+
+</code></pre><h1 id="class和继承">class和继承</h1>
+<p>class内部写2个东西：
+● 一个是constructor(){}定义了实例的属性，里面的<code>this</code>代表实例对象。属性在实例身上。
+● 一个定义类的方法：类的所有方法都定义在类的prototype属性上面。</p>
+<pre tabindex="0"><code>class Person{
+  constructor(name, age){ 
+    this.name = name;
+    this.age = age;
+  }
+  sayHi (){
+      console.log(`你好，我叫${this.name}`)
+      }
+}
+</code></pre><p>继承：</p>
+<pre tabindex="0"><code>//
+class Xiaoming extends Person{
+  getAge(){
+      console.log(`我今年${this.age}岁`)
+}
+}
+let xiaoming = new Xiaoming('小明',18)
+xiaoming.sayHi()//output:你好，我叫小明
+xiaoming.getAge()//output:我今年18岁
+</code></pre></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/es6/">es6</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/jquery%E5%85%A5%E9%97%A8jquery%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="prev" rel="prev" title="jQuery设计思想"><i class="fas fa-angle-left fa-fw"></i>jQuery设计思想</a>
+            <a href="/posts/dom%E6%98%AF%E4%BB%80%E4%B9%88%E5%BE%85%E5%AE%8C%E5%96%84/" class="next" rel="next" title="DOM是什么">DOM是什么<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">可喜</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

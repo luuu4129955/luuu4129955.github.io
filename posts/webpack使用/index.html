@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Webpack使用 - 可喜のlife</title><meta name="Description" content=""><meta property="og:title" content="Webpack使用" />
-<meta property="og:description" content="1.转译 JS 参考webpack 文档 ​npm init -y 创建package.json文件 使用 yarn 局部安装：yarn add webpack@4 webpack-cli@3 --dev 创建node_modules文件" />
+<meta property="og:description" content="本文章讲述了Webpack的基础使用，以及loader和plugin的区别。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://luuu4129955.github.io/posts/webpack%E4%BD%BF%E7%94%A8/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-02-14T15:31:25+08:00" />
@@ -14,7 +14,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Webpack使用"/>
-<meta name="twitter:description" content="1.转译 JS 参考webpack 文档 ​npm init -y 创建package.json文件 使用 yarn 局部安装：yarn add webpack@4 webpack-cli@3 --dev 创建node_modules文件"/>
+<meta name="twitter:description" content="本文章讲述了Webpack的基础使用，以及loader和plugin的区别。"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -27,12 +27,12 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/luuu4129955.github.io\/posts\/webpack%E4%BD%BF%E7%94%A8\/"
-        },"genre": "posts","wordcount":  1970 ,
+        },"genre": "posts","wordcount":  2008 ,
         "url": "https:\/\/luuu4129955.github.io\/posts\/webpack%E4%BD%BF%E7%94%A8\/","datePublished": "2022-02-14T15:31:25+08:00","dateModified": "2022-02-14T15:31:25+08:00","publisher": {
             "@type": "Organization",
-            "name": "作者"},"author": {
+            "name": "可喜"},"author": {
                 "@type": "Person",
-                "name": "作者"
+                "name": "可喜"
             },"description": ""
     }
     </script></head>
@@ -41,7 +41,7 @@
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="可喜のlife">可喜のlife</a>
+            <a href="/" title="可喜のlife">😉可喜のlife</a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
@@ -54,7 +54,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="可喜のlife">可喜のlife</a>
+                <a href="/" title="可喜のlife">😉可喜のlife</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -76,9 +76,9 @@
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Webpack使用</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1970 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>可喜</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2008 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -86,13 +86,21 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#1转译-js">1.转译 JS</a></li>
+    <li><a href="#2文件名中-hash-的作用缓存">2.文件名中 hash 的作用：缓存</a></li>
+    <li><a href="#3生成-html">3.生成 HTML</a></li>
+  </ul>
+
+  <ul>
     <li><a href="#loader">loader</a></li>
     <li><a href="#plugin">plugin</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<h1 id="1转译-js">1.转译 JS</h1>
-<p>参考<a href="https://webpack.js.org/guides/getting-started/" target="_blank" rel="noopener noreffer">webpack 文档</a><!-- raw HTML omitted --><img
+            </div><div class="content" id="content"><p>本文章讲述了Webpack的基础使用，以及loader和plugin的区别。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="1转译-js">1.转译 JS</h2>
+<p>参考<a href="https://webpack.js.org/guides/getting-started/" target="_blank" rel="noopener noreffer">webpack 文档</a><!-- raw HTML omitted --></p>
+<p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://cdn.nlark.com/yuque/0/2021/png/22429169/1634478571798-6015ad6e-bee2-41ad-8495-89df23850875.png#clientId=u2ffe6a97-5a36-4&amp;from=paste&amp;height=107&amp;id=u889c6df4&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=213&amp;originWidth=194&amp;originalType=binary&amp;ratio=1&amp;size=11196&amp;status=done&amp;style=none&amp;taskId=uc129d58f-998f-4b42-b66e-41ea8e4eef4&amp;width=97"
@@ -147,7 +155,7 @@
 <span class="p">};</span>
 </code></pre></div><p>运行<code>npx webpack</code>：生成<code>main.eab27a4c79b27f2b3b0c.js</code>
 <!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<h1 id="2文件名中-hash-的作用缓存">2.文件名中 hash 的作用：缓存</h1>
+<h2 id="2文件名中-hash-的作用缓存">2.文件名中 hash 的作用：缓存</h2>
 <p><strong>HTTP 缓存:</strong><!-- raw HTML omitted --><strong>是 HTTP 协议规定的，浏览器必须支持。</strong><!-- raw HTML omitted -->举例：第一次访问<code>baidu.com</code>，进入首页<code>index.html</code>,同时加载了<code>index.html</code>中引入的<code>css</code>，<code>js</code>文件。<!-- raw HTML omitted -->为了实现超快访问，可以在响应头里（<code>Cache-Control</code>）设置为一年缓存，之后再访问，就能从硬盘中读取，加快访问速度。<!-- raw HTML omitted -->如果<code>css</code>，<code>js</code>有更新，那么重新<code>npx webpack</code>打包一下就能生成新的带 hash 的文件名，浏览器发现文件名不同，就会下载新资源。<!-- raw HTML omitted -->为了避免<code>dist</code>目录下生成太多文件，需要先删除<code>dist</code>目录再打包，即<code>rm -rf dist;npx webpack</code><!-- raw HTML omitted --><strong>方便起见：</strong><!-- raw HTML omitted -->将这一行写到<code>package.json</code>文件中即可。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s2">&#34;scripts&#34;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&#34;build&#34;</span><span class="o">:</span> <span class="s2">&#34;rm -rf dist &amp;&amp; webpack&#34;</span><span class="c1">//用;分隔命令行有bug，没有执行webpack
@@ -159,8 +167,9 @@
 </ul>
 <p>会生成<code>main.10a28dc1eb6cbd2ffa03.js</code>文件
 <!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<h1 id="3生成-html">3.生成 HTML</h1>
-<p><a href="https://webpack.js.org/plugins/html-webpack-plugin/" target="_blank" rel="noopener noreffer">参考文档</a><!-- raw HTML omitted --><code>webpack.config.js</code>文件配置如下：</p>
+<h2 id="3生成-html">3.生成 HTML</h2>
+<p><a href="https://webpack.js.org/plugins/html-webpack-plugin/" target="_blank" rel="noopener noreffer">参考文档</a><!-- raw HTML omitted --></p>
+<p><code>webpack.config.js</code>文件配置如下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;html-webpack-plugin&#34;</span><span class="p">);</span> <span class="c1">//installed via npm
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;webpack&#34;</span><span class="p">);</span> <span class="c1">//to access built-in plugins
 </span><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
@@ -352,8 +361,7 @@
 <li>针对的是<code>loader</code>结束后，<code>webpack</code>打包的整个过程</li>
 <li>举例 1：用<code>mini-css-extract-plugin</code>插件，抽取多个<code>css</code>文件的代码将其合并为一个<code>css</code>文件</li>
 <li>举例 2：用``html-webpack-plugin<code>插件，将 0 个或 1 个</code>html<code>文件转换为一个引入了</code>css<code>和</code>js<code>的</code>html`文件</li>
-</ul>
-</div><div class="post-footer" id="post-footer">
+</ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -381,7 +389,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">可喜</a></span></div>
         </div>
     </footer></div>
 
@@ -390,5 +398,5 @@
             </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment fa-fw"></i>
             </a>
-        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>
