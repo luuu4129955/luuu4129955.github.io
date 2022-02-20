@@ -3,10 +3,17 @@
         <title>DOM - 标签 - 可喜のlife</title>
         <link>https://luuu4129955.github.io/tags/dom/</link>
         <description>DOM - 标签 - 可喜のlife</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 14 Feb 2022 15:27:43 &#43;0800</lastBuildDate><atom:link href="https://luuu4129955.github.io/tags/dom/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 24 Jul 2021 15:27:43 &#43;0800</lastBuildDate><atom:link href="https://luuu4129955.github.io/tags/dom/" rel="self" type="application/rss+xml" /><item>
+    <title>DOM事件与事件委托</title>
+    <link>https://luuu4129955.github.io/posts/dom%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98-/</link>
+    <pubDate>Sat, 24 Jul 2021 15:27:43 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://luuu4129955.github.io/posts/dom%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98-/</guid>
+    <description><![CDATA[事件 事件是用户或浏览器执行的动作，如果需要，开发者对此事件做出回应。举几个可能发生的不同事件： 用户在某个元素上点击鼠标或悬停光标。 用户在键盘]]></description>
+</item><item>
     <title>DOM是什么</title>
     <link>https://luuu4129955.github.io/posts/dom%E6%98%AF%E4%BB%80%E4%B9%88%E5%BE%85%E5%AE%8C%E5%96%84/</link>
-    <pubDate>Mon, 14 Feb 2022 15:27:43 &#43;0800</pubDate>
+    <pubDate>Thu, 22 Jul 2021 15:27:43 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://luuu4129955.github.io/posts/dom%E6%98%AF%E4%BB%80%E4%B9%88%E5%BE%85%E5%AE%8C%E5%96%84/</guid>
     <description><![CDATA[封装了一些常见 DOM APIsGitHub 源码地址 前言 网页其实是一棵树。 JS 如何操作这棵树？ A：→ 浏览器会在 window 上加一个 document 属性 JS 用 document 来操作这棵树 上述步骤说明：JS 是用一]]></description>

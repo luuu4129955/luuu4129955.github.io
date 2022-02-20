@@ -3,77 +3,77 @@
         <title>可喜のlife</title>
         <link>https://luuu4129955.github.io/</link>
         <description>可喜のlife</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 14 Feb 2022 15:31:25 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 14 Nov 2021 15:31:25 &#43;0800</lastBuildDate>
             <atom:link href="https://luuu4129955.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>React 组件</title>
-    <link>https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/</link>
-    <pubDate>Mon, 14 Feb 2022 15:31:25 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/</guid>
-    <description><![CDATA[组件（推荐函数组件） React 元素就是由React.createElement()API 创建的一个虚拟DOM对象 在 React 中，一个返回 React 元素的函数可以当作]]></description>
-</item><item>
     <title>Vue3造轮子项目记录</title>
     <link>https://luuu4129955.github.io/posts/vue3%E9%80%A0%E8%BD%AE%E5%AD%90/</link>
-    <pubDate>Mon, 14 Feb 2022 15:31:25 &#43;0800</pubDate>
+    <pubDate>Sun, 14 Nov 2021 15:31:25 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://luuu4129955.github.io/posts/vue3%E9%80%A0%E8%BD%AE%E5%AD%90/</guid>
     <description><![CDATA[<p>这是关于我的 Vue3 造轮子项目的一个记录</p>]]></description>
 </item><item>
-    <title>Vue之模板，指令与修饰符</title>
-    <link>https://luuu4129955.github.io/posts/vue%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%8C%87%E4%BB%A4%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/</link>
-    <pubDate>Mon, 14 Feb 2022 15:31:25 &#43;0800</pubDate>
+    <title>React 组件</title>
+    <link>https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/</link>
+    <pubDate>Sat, 13 Nov 2021 15:31:25 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/vue%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%8C%87%E4%BB%A4%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/</guid>
-    <description><![CDATA[1.模板 Vue 里，模板一般指template， 1.Vue 完整版，写在 HTML 里 &lt;div id=&#34;app&#34;&gt; {{n}} &lt;button @click=&#34;add&#34;&gt;+1&lt;/button&gt; &lt;/div&gt; new Vue({ el:&#34;#app&#34;, data:{n:0}, //data可以写成函数 methods:{add(){}} }) 2.Vue 完整版，写在选项里 选项里的di]]></description>
-</item><item>
-    <title>Vue数据响应式</title>
-    <link>https://luuu4129955.github.io/posts/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/</link>
-    <pubDate>Mon, 14 Feb 2022 15:31:25 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/</guid>
-    <description><![CDATA[1.回顾 getter&amp;setter 作用：在定义对象的时候就在对象上设置getter，setter来对一个虚拟属性进行读写用法：get，set关键字getter：不用]]></description>
+    <guid>https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/</guid>
+    <description><![CDATA[组件（推荐函数组件） React 元素就是由React.createElement()API 创建的一个虚拟DOM对象 在 React 中，一个返回 React 元素的函数可以当作]]></description>
 </item><item>
     <title>Webpack使用</title>
     <link>https://luuu4129955.github.io/posts/webpack%E4%BD%BF%E7%94%A8/</link>
-    <pubDate>Mon, 14 Feb 2022 15:31:25 &#43;0800</pubDate>
+    <pubDate>Tue, 02 Nov 2021 15:31:25 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://luuu4129955.github.io/posts/webpack%E4%BD%BF%E7%94%A8/</guid>
     <description><![CDATA[<p>本文章讲述了Webpack的基础使用，以及loader和plugin的区别。</p>]]></description>
 </item><item>
-    <title>常说的MVC到底是什么？</title>
-    <link>https://luuu4129955.github.io/posts/%E5%B8%B8%E8%AF%B4%E7%9A%84mvc%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88/</link>
-    <pubDate>Mon, 14 Feb 2022 15:31:25 &#43;0800</pubDate>
+    <title>函数防抖和函数节流是什么？</title>
+    <link>https://luuu4129955.github.io/posts/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/</link>
+    <pubDate>Fri, 15 Oct 2021 15:27:43 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/%E5%B8%B8%E8%AF%B4%E7%9A%84mvc%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88/</guid>
-    <description><![CDATA[<p>本文章从MVC是什么+MVC具体怎么怎么写+MVC的优点几大方面简单介绍了MVC这一设计模式。</p>]]></description>
+    <guid>https://luuu4129955.github.io/posts/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/</guid>
+    <description><![CDATA[<p>如何理解函数防抖和函数节流并搞清楚二者的作用，以及如何实现函数防抖和函数节流。</p>]]></description>
 </item><item>
-    <title>Promise使用</title>
-    <link>https://luuu4129955.github.io/posts/promise%E4%BD%BF%E7%94%A8/</link>
-    <pubDate>Mon, 14 Feb 2022 15:30:49 &#43;0800</pubDate>
+    <title>Vue之模板，指令与修饰符</title>
+    <link>https://luuu4129955.github.io/posts/vue%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%8C%87%E4%BB%A4%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/</link>
+    <pubDate>Thu, 14 Oct 2021 15:31:25 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/promise%E4%BD%BF%E7%94%A8/</guid>
-    <description><![CDATA[ss]]></description>
+    <guid>https://luuu4129955.github.io/posts/vue%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%8C%87%E4%BB%A4%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6/</guid>
+    <description><![CDATA[1.模板 Vue 里，模板一般指template， 1.Vue 完整版，写在 HTML 里 &lt;div id=&#34;app&#34;&gt; {{n}} &lt;button @click=&#34;add&#34;&gt;+1&lt;/button&gt; &lt;/div&gt; new Vue({ el:&#34;#app&#34;, data:{n:0}, //data可以写成函数 methods:{add(){}} }) 2.Vue 完整版，写在选项里 选项里的di]]></description>
+</item><item>
+    <title>ES6使用总结</title>
+    <link>https://luuu4129955.github.io/posts/es6%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Thu, 14 Oct 2021 15:27:43 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://luuu4129955.github.io/posts/es6%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[<p>如何学习？<!-- raw HTML omitted --><a href="https://fangyinghang.com/es-6-tutorials/" target="_blank" rel="noopener noreffer">点击查看ES 6 新特性列表</a><!-- raw HTML omitted -->一个个地点进去查看MDN的例子</p>]]></description>
+</item><item>
+    <title>Vue数据响应式</title>
+    <link>https://luuu4129955.github.io/posts/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/</link>
+    <pubDate>Fri, 08 Oct 2021 15:31:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://luuu4129955.github.io/posts/vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F/</guid>
+    <description><![CDATA[1.回顾 getter&amp;setter 作用：在定义对象的时候就在对象上设置getter，setter来对一个虚拟属性进行读写用法：get，set关键字getter：不用]]></description>
 </item><item>
     <title>AJAX是什么以及怎么用</title>
     <link>https://luuu4129955.github.io/posts/ajax%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A5%E5%8F%8A%E6%80%8E%E4%B9%88%E7%94%A8/</link>
-    <pubDate>Mon, 14 Feb 2022 15:29:59 &#43;0800</pubDate>
+    <pubDate>Tue, 05 Oct 2021 15:29:59 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://luuu4129955.github.io/posts/ajax%E6%98%AF%E4%BB%80%E4%B9%88%E4%BB%A5%E5%8F%8A%E6%80%8E%E4%B9%88%E7%94%A8/</guid>
     <description><![CDATA[源码 1.没有AJAX时，浏览器如何发起请求 地址栏输入URL DNS解析域名 浏览器向服务器发送一个HTTP请求 服务器返回一个HTTP响应 浏览器解]]></description>
 </item><item>
-    <title>DOM事件与事件委托</title>
-    <link>https://luuu4129955.github.io/posts/dom%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98-/</link>
-    <pubDate>Mon, 14 Feb 2022 15:27:43 &#43;0800</pubDate>
+    <title>为什么会有Cookie和Session</title>
+    <link>https://luuu4129955.github.io/posts/cookie%E5%92%8Csession/</link>
+    <pubDate>Sat, 18 Sep 2021 15:28:19 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/dom%E4%BA%8B%E4%BB%B6%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98-/</guid>
-    <description><![CDATA[事件 事件是用户或浏览器执行的动作，如果需要，开发者对此事件做出回应。举几个可能发生的不同事件： 用户在某个元素上点击鼠标或悬停光标。 用户在键盘]]></description>
+    <guid>https://luuu4129955.github.io/posts/cookie%E5%92%8Csession/</guid>
+    <description><![CDATA[为什么会有cookie 由于HTTP协议无状态这一特性，当客户端请求服务器时，每次都是一个新的请求，浏览器并不能记住请求记录。为了解决这个问题]]></description>
 </item><item>
-    <title>DOM是什么</title>
-    <link>https://luuu4129955.github.io/posts/dom%E6%98%AF%E4%BB%80%E4%B9%88%E5%BE%85%E5%AE%8C%E5%96%84/</link>
-    <pubDate>Mon, 14 Feb 2022 15:27:43 &#43;0800</pubDate>
+    <title>解决跨域之CORS和JSONP</title>
+    <link>https://luuu4129955.github.io/posts/%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E4%B9%8Bcors%E5%92%8Cjsonp/</link>
+    <pubDate>Tue, 14 Sep 2021 15:28:19 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/dom%E6%98%AF%E4%BB%80%E4%B9%88%E5%BE%85%E5%AE%8C%E5%96%84/</guid>
-    <description><![CDATA[封装了一些常见 DOM APIsGitHub 源码地址 前言 网页其实是一棵树。 JS 如何操作这棵树？ A：→ 浏览器会在 window 上加一个 document 属性 JS 用 document 来操作这棵树 上述步骤说明：JS 是用一]]></description>
+    <guid>https://luuu4129955.github.io/posts/%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E4%B9%8Bcors%E5%92%8Cjsonp/</guid>
+    <description><![CDATA[1.同源策略 1.1源 ​window.origin或location.origin可以得到当前源。 ​源=协议+域名+端口号。 如果2个URL的协]]></description>
 </item></channel>
 </rss>

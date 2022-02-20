@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>框架 - 标签 - 可喜のlife</title>
+        <link>https://luuu4129955.github.io/tags/%E6%A1%86%E6%9E%B6/</link>
+        <description>框架 - 标签 - 可喜のlife</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 13 Nov 2021 15:31:25 &#43;0800</lastBuildDate><atom:link href="https://luuu4129955.github.io/tags/%E6%A1%86%E6%9E%B6/" rel="self" type="application/rss+xml" /><item>
+    <title>React 组件</title>
+    <link>https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/</link>
+    <pubDate>Sat, 13 Nov 2021 15:31:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://luuu4129955.github.io/posts/react%E7%BB%84%E4%BB%B6/</guid>
+    <description><![CDATA[组件（推荐函数组件） React 元素就是由React.createElement()API 创建的一个虚拟DOM对象 在 React 中，一个返回 React 元素的函数可以当作]]></description>
+</item></channel>
+</rss>

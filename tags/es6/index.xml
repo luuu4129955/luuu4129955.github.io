@@ -3,27 +3,19 @@
         <title>es6 - 标签 - 可喜のlife</title>
         <link>https://luuu4129955.github.io/tags/es6/</link>
         <description>es6 - 标签 - 可喜のlife</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 14 Feb 2022 15:27:43 &#43;0800</lastBuildDate><atom:link href="https://luuu4129955.github.io/tags/es6/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 14 Oct 2021 15:27:43 &#43;0800</lastBuildDate><atom:link href="https://luuu4129955.github.io/tags/es6/" rel="self" type="application/rss+xml" /><item>
     <title>ES6使用总结</title>
     <link>https://luuu4129955.github.io/posts/es6%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
-    <pubDate>Mon, 14 Feb 2022 15:27:43 &#43;0800</pubDate>
+    <pubDate>Thu, 14 Oct 2021 15:27:43 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://luuu4129955.github.io/posts/es6%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
     <description><![CDATA[<p>如何学习？<!-- raw HTML omitted --><a href="https://fangyinghang.com/es-6-tutorials/" target="_blank" rel="noopener noreffer">点击查看ES 6 新特性列表</a><!-- raw HTML omitted -->一个个地点进去查看MDN的例子</p>]]></description>
 </item><item>
-    <title>函数防抖和函数节流是什么？</title>
-    <link>https://luuu4129955.github.io/posts/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/</link>
-    <pubDate>Mon, 14 Feb 2022 15:27:43 &#43;0800</pubDate>
+    <title>Promise使用</title>
+    <link>https://luuu4129955.github.io/posts/promise%E4%BD%BF%E7%94%A8/</link>
+    <pubDate>Sun, 08 Aug 2021 15:30:49 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/</guid>
-    <description><![CDATA[<p>如何理解函数防抖和函数节流并搞清楚二者的作用，以及如何实现函数防抖和函数节流。</p>]]></description>
-</item><item>
-    <title>搞清楚浅拷贝和深拷贝</title>
-    <link>https://luuu4129955.github.io/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%B7%B1%E6%8B%B7%E8%B4%9D/</link>
-    <pubDate>Mon, 14 Feb 2022 15:27:43 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://luuu4129955.github.io/posts/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%B7%B1%E6%8B%B7%E8%B4%9D/</guid>
-    <description><![CDATA[<p>理清楚浅拷贝和深拷贝的概念，并总结如何实现一个深拷贝。
-<a href="https://juejin.cn/post/6896637675492065287" target="_blank" rel="noopener noreffer">参考博客</a></p>]]></description>
+    <guid>https://luuu4129955.github.io/posts/promise%E4%BD%BF%E7%94%A8/</guid>
+    <description><![CDATA[ss]]></description>
 </item></channel>
 </rss>
